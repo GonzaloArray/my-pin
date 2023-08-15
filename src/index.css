@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+
+  @font-face {
+    font-family: Proxima Nova;
+    font-weight: 400;
+    src: url(/fonts/proxima-nova/400-regular.woff) format("woff");
+  }
+  @font-face {
+    font-family: Proxima Nova;
+    font-weight: 500;
+    src: url(/fonts/proxima-nova/500-medium.woff) format("woff");
+  }
+}
+
+:root{
+  background-color: black;
+  color: white;
+}
+
+@layer components {
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+    width: 250px;
+    max-width: 100%;
+  }
+
+  .btn-blue {
+    @apply bg-blue-500 text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-blue-700;
+  }
+
+  .btn-gray {
+    @apply bg-gray-400 text-gray-800;
+  }
+  .btn-gray:hover {
+    @apply bg-gray-500;
+  }
+}
