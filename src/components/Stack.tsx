@@ -2,8 +2,7 @@ import { Badge } from "./Badge"
 
 export const Stack = () => {
   return (
-    <div className='lg:w-2/3'>
-      <h2 className="font-bold">Stack Frontend: </h2>
+    <div>
       <div className="flex gap-4 mt-3 flex-wrap">
         <Badge>
           # React

@@ -1,0 +1,14 @@
+.hash{
+  font-size: 2rem;
+}
+
+.title .hash{
+  opacity: 0;
+  transition: .2s linear;
+}
+
+.title:hover .hash{
+  opacity: 1;
+  transition: .2s linear;
+  color: rgb(22, 194, 171);
+}
