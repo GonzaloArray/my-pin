@@ -1,6 +1,7 @@
 import { GithubPartial } from "../icons/GithubPartial"
+import { Instagram } from "../icons/Instagram.icon"
 import { Linkdnd } from "../icons/Linkdnd.icon"
-import { Instagram } from "../icons/instagram.icon"
+
 import { LinkAction } from "./LinkAction"
 
 
