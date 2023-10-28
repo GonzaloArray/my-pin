@@ -5,10 +5,12 @@ import Style from './UserDescription.module.css'
 
 interface Props {
   toggle: boolean,
+  modalCv: boolean
   setToggle: () => void
+  setModalCv: () => void
 }
 
-export const UserDescription = ({toggle, setToggle}: Props) => {
+export const UserDescription = ({setModalCv, toggle, setToggle}: Props) => {
   return (
     <>
       <button onClick={() => setToggle()} className={`absolute  top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${toggle ? 'end-0 hover:px-5 -mr-3' : 'rotate-180 px-2 -end-7' }`}>
@@ -22,8 +24,9 @@ export const UserDescription = ({toggle, setToggle}: Props) => {
           goal is to learn new technologies and become a FrontEnd Architect. I
           code in JavaScript, React, Sass
         </p>
-        <div className="flex">
-          <button className="btn btn-gray mt-7 w-full">Descargar CV</button>
+        <div className="flex gap-2">
+          <button onClick={() => setModalCv()} className="btn btn-gray mt-7 w-full">Descargar CV</button>
+          <button className="btn btn-gray mt-7 w-full">Contact me</button>
         </div>
       </div>
 

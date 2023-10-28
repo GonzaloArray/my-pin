@@ -55,19 +55,10 @@ export const Proyects = () => {
       <SpacingContent>
         <Stack />
       </SpacingContent>
-      <Title title="Portfolio." />
+      <Title title="Learning." />
       <SpacingContent>
         <Stack />
       </SpacingContent>
-      <Title title="Portfolio." />
-      <SpacingContent>
-        <Stack />
-      </SpacingContent>
-      <Title title="Portfolio." />
-      <SpacingContent>
-        <Stack />
-      </SpacingContent>
-      <Title title="Portfolio." />
     </div>
   );
 };
