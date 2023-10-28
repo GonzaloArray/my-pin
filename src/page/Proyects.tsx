@@ -5,7 +5,7 @@ import { Title } from "../components/Title";
 
 export const Proyects = () => {
   return (
-    <div className="lg:w-3/4 flex flex-col gap-10 p-4 lg:p-10">
+    <div className="flex flex-col gap-10 p-4 lg:p-10">
       <Title title="Projects." />
       <SpacingContent>
         <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
@@ -52,6 +52,18 @@ export const Proyects = () => {
         </div>
       </SpacingContent>
       <Title title="Skills." />
+      <SpacingContent>
+        <Stack />
+      </SpacingContent>
+      <Title title="Portfolio." />
+      <SpacingContent>
+        <Stack />
+      </SpacingContent>
+      <Title title="Portfolio." />
+      <SpacingContent>
+        <Stack />
+      </SpacingContent>
+      <Title title="Portfolio." />
       <SpacingContent>
         <Stack />
       </SpacingContent>

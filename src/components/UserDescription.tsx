@@ -3,11 +3,15 @@ import { Avatar } from "./Avatar";
 import { LinkNetworking } from "./LinkNetworking";
 import Style from './UserDescription.module.css'
 
+interface Props {
+  toggle: boolean,
+  setToggle: () => void
+}
 
-export const UserDescription = () => {
+export const UserDescription = ({toggle, setToggle}: Props) => {
   return (
-    <div className="lg:w-1/3 2xl:w-1/4 flex justify-between gap-5  items-center flex-col bg-slate-900 p-7 relative border-spacing-2 border-r-2 border-lime-50">
-      <button className="absolute end-0 top-8 bg-black -mr-3 border-l-2 border-t-2 border-b-2 border-lime-50 hover:px-5 py-3 rounded-l-xl transition-all">
+    <>
+      <button onClick={() => setToggle()} className={`absolute  top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${toggle ? 'end-0 hover:px-5 -mr-3' : 'rotate-180 px-2 -end-7' }`}>
         <Arrow className={Style.icon}/>
       </button>
       <div className="flex flex-col gap-3">
@@ -16,10 +20,7 @@ export const UserDescription = () => {
         <p className="tracking-wide leading-7">
           I’m from Buenos Aires, Argentina. I’m working with JS since 2022. My
           goal is to learn new technologies and become a FrontEnd Architect. I
-          code in JavaScript, React, Sass, Material UI. I also have knowledge of
-          Node with Express in the backend. I would love to learn Three js and
-          Blender to make amazing things in the web. I'm currently practicing
-          Nextjs :)
+          code in JavaScript, React, Sass
         </p>
         <div className="flex">
           <button className="btn btn-gray mt-7 w-full">Descargar CV</button>
@@ -27,6 +28,6 @@ export const UserDescription = () => {
       </div>
 
       <LinkNetworking/>
-    </div>
+    </>
   );
 };
