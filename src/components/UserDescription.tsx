@@ -1,6 +1,7 @@
 import { Arrow } from "../icons/Arrow.icon";
 import { Avatar } from "./Avatar";
 import { LinkNetworking } from "./LinkNetworking";
+import { SetupUser } from "./SetupUser";
 import Style from './UserDescription.module.css'
 
 interface Props {
@@ -32,6 +33,7 @@ export const UserDescription = ({setModalCv, toggle, setToggle, setModalFormData
       </div>
 
       <LinkNetworking/>
+      <SetupUser/>
     </>
   );
 };

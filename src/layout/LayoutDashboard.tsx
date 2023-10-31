@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { UserDescription } from "../components/UserDescription";
 import { useState } from "react";
 import Modal from "../components/Modal";
+import { Footer } from "../components/Footer";
 
 export const LayoutDashboard = () => {
   const [toggle, setToggle] = useState(false);
@@ -41,6 +42,7 @@ export const LayoutDashboard = () => {
         }`}
       >
         <Outlet />
+        <Footer />
       </div>
       {modalCv && (
         <Modal modalCv={modalCv} setModalCv={handleModalCv}>

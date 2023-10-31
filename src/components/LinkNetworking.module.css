@@ -1,0 +1,13 @@
+
+.table::before{
+  content: '';
+  width: 1.6rem;
+  height: 2rem;
+  border-top: 2px solid #ffffff2c;
+  border-left: 2px solid #ffffff2c;
+  margin: auto;
+
+  position: absolute;
+  top: -2rem;
+  right: -0.3rem;
+}
