@@ -11,11 +11,11 @@ export const Card = ({ title, description, link }: Props) => {
     <a
       target="__blank"
       href={link}
-      className="cursor-pointer max-w-md bg-slate-700 p-6 rounded-lg shadow-lg relative hover:border hover:border-lime-50 transition-all"
+      className="cursor-pointer bg-slate-700 py-6 px-2 md:p-6 rounded-lg shadow-lg relative transition-all box-border hover:scale-105 hover:border"
     >
-      <h2 className="text-2xl font-semibold text-lime-200 mt-4">{title}</h2>
-      <p className="text-lime-50 mt-2">{description}</p>
-      <div className="absolute top-0 right-0 p-4">
+      <h2 className="text-md md:text-2xl font-semibold text-lime-300 mt-4 ">{title}</h2>
+      <p className="text-white text-sm md:text-lg mt-2">{description}</p>
+      <div className="absolute top-0 right-0 md:p-2">
         <Github />
       </div>
     </a>
