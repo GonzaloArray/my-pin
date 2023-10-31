@@ -8,9 +8,10 @@ interface Props {
   modalCv: boolean
   setToggle: () => void
   setModalCv: () => void
+  setModalFormData: () => void
 }
 
-export const UserDescription = ({setModalCv, toggle, setToggle}: Props) => {
+export const UserDescription = ({setModalCv, toggle, setToggle, setModalFormData}: Props) => {
   return (
     <>
       <button onClick={() => setToggle()} className={`absolute  top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${toggle ? 'end-0 hover:px-5 -mr-3' : 'rotate-180 px-2 -end-7' }`}>
@@ -26,7 +27,7 @@ export const UserDescription = ({setModalCv, toggle, setToggle}: Props) => {
         </p>
         <div className="flex gap-2">
           <button onClick={() => setModalCv()} className="btn btn-gray mt-7 w-full">Descargar CV</button>
-          <button className="btn btn-gray mt-7 w-full">Contact me</button>
+          <button onClick={() => setModalFormData()} className="btn btn-gray mt-7 w-full">Contact me</button>
         </div>
       </div>
 

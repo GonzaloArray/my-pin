@@ -1,32 +1,75 @@
 import { Outlet } from "react-router-dom";
 import { UserDescription } from "../components/UserDescription";
 import { useState } from "react";
-import ModalCv from "../components/Modal";
-
+import Modal from "../components/Modal";
 
 export const LayoutDashboard = () => {
-  const [toggle, setToggle] = useState(false)
-  const [modalCv, setModalCv] = useState(false)
+  const [toggle, setToggle] = useState(false);
+  const [modalCv, setModalCv] = useState(false);
+  const [modalFormData, setModaFormData] = useState(false);
 
   const handleToggle = () => {
-    setToggle(!toggle)
-  }
+    setToggle(!toggle);
+  };
 
   const handleModalCv = () => {
-    setModalCv(!modalCv)
-  }
+    setModalCv(!modalCv);
+  };
+
+  const handleModalFormData = () => {
+    setModaFormData(!modalFormData);
+  };
 
   return (
     <div className="relative">
-      <div className={`h-screen fixed w-[410px] flex justify-between gap-5  items-center flex-col bg-slate-900 p-7 border-spacing-2 border-r-2 border-lime-50 ${toggle ? '': '-left-[400px]'}`}>
-        <UserDescription setModalCv={handleModalCv} modalCv={modalCv} toggle={toggle} setToggle={handleToggle} />
+      <div
+        className={`h-screen fixed w-[410px] flex justify-between gap-5  items-center flex-col bg-slate-900 p-7 border-spacing-2 border-r-2 border-lime-50 ${
+          toggle ? "" : "-left-[400px]"
+        }`}
+      >
+        <UserDescription
+          setModalCv={handleModalCv}
+          setModalFormData={handleModalFormData}
+          modalCv={modalCv}
+          toggle={toggle}
+          setToggle={handleToggle}
+        />
       </div>
-      <div className={`absolute right-0 flex flex-col ${toggle ? 'left-[410px]':'left-5'}`}>
+      <div
+        className={`absolute right-0 flex flex-col ${
+          toggle ? "left-[410px]" : "left-5"
+        }`}
+      >
         <Outlet />
       </div>
-      {
-        modalCv && <ModalCv modalCv={modalCv} setModalCv={handleModalCv}/>
-      }
+      {modalCv && (
+        <Modal modalCv={modalCv} setModalCv={handleModalCv}>
+          <a
+            target="_blank"
+            href=""
+            className="hover:bg-white-100 rounded-xl p-3"
+          >
+            Descargar Cv
+          </a>
+          <a
+            target="_blank"
+            href=""
+            className="hover:bg-white-100 rounded-xl p-3"
+          >
+            Dowload Resume
+          </a>
+        </Modal>
+      )}
+      {modalFormData && (
+        <Modal modalCv={modalFormData} setModalCv={handleModalFormData}>
+          <form className="flex flex-col w-full gap-4 text-black">
+            <input className="p-2 rounded-md" type="text" placeholder="Ex: Gonzalo Arrayaran" />
+            <input className="p-2 rounded-md" type="email" placeholder="Ex: Gonzalo Arrayaran" />
+            <textarea className="rounded-md p-2" placeholder="Write me..." name="" id=""  rows={4}></textarea>
+            <button type="submit" className="text-white bg-red-800 rounded-lg p-2 hover:bg-red-500">Send Message</button>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 };
