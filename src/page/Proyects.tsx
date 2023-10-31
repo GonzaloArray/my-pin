@@ -4,6 +4,8 @@ import { SpacingContent } from "../components/SpacingContent";
 import { Stack } from "../components/Stack";
 import { Title } from "../components/Title";
 import { Dashboard } from "../icons/Dashboard.icon";
+import { Link } from "react-router-dom";
+import { Setup } from "../icons/Setup.icon";
 
 export const Proyects = () => {
   const [dashboard, setDashboard] = useState({
@@ -138,6 +140,9 @@ export const Proyects = () => {
       <SpacingContent>
         <Stack />
       </SpacingContent>
+      <Link to='setup' className="fixed right-5 bottom-7 text-4xl hover:scale-105 transition-all hover:rotate-45">
+          <Setup className="w-[50px]"/>
+      </Link>
     </div>
   );
 };
