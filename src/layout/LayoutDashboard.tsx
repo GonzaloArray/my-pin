@@ -63,8 +63,14 @@ export const LayoutDashboard = () => {
       {modalFormData && (
         <Modal modalCv={modalFormData} setModalCv={handleModalFormData}>
           <form className="flex flex-col w-full gap-4 text-black">
-            <input className="p-2 rounded-md" type="text" placeholder="Ex: Gonzalo Arrayaran" />
-            <input className="p-2 rounded-md" type="email" placeholder="Ex: Gonzalo Arrayaran" />
+            <label className="flex flex-col">
+              <span className="text-white">Asunto:</span>
+              <input className="p-2 rounded-md" type="text" placeholder="Ex: Gonzalo Arrayaran" />
+            </label>
+            <label className="flex flex-col">
+              <span className="text-white">Email:</span>
+              <input className="p-2 rounded-md" type="email" placeholder="Ex: portfolio@gmail.com" />
+            </label>
             <textarea className="rounded-md p-2" placeholder="Write me..." name="" id=""  rows={4}></textarea>
             <button type="submit" className="text-white bg-red-800 rounded-lg p-2 hover:bg-red-500">Send Message</button>
           </form>
