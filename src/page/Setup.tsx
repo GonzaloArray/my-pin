@@ -7,7 +7,7 @@ export const Setup = () => {
     <div className="flex flex-col gap-10 p-4 lg:p-10 z-10">
       <div className="flex gap-10 items-center">
         <Title title="Setup." />
-        <Link to='/' className="text-4xl transition-colors hover:text-lime-400">
+        <Link to='/' className="text-lime-500 md:text-white md:text-4xl transition-colors hover:text-lime-400">
           - Go Back Profile -
         </Link>
       </div>
