@@ -55,7 +55,7 @@ export const Proyects = () => {
                 sm: "sm:grid-cols-2",
                 md: "md:grid-cols-2",
                 lg: "lg:grid-cols-3",
-                xl: "xl:grid-cols-4",
+                xl: "xl:grid-cols-3",
                 btnActive: 2,
               })
             }
@@ -72,7 +72,7 @@ export const Proyects = () => {
                 sm: "sm:grid-cols-2",
                 md: "md:grid-cols-3",
                 lg: "lg:grid-cols-4",
-                xl: "xl:grid-cols-5",
+                xl: "xl:grid-cols-4",
                 btnActive: 3,
               })
             }
