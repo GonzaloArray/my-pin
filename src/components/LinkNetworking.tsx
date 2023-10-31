@@ -5,12 +5,16 @@ import { Linkdnd } from "../icons/Linkdnd.icon";
 
 import { LinkAction } from "./LinkAction";
 
-export const LinkNetworking = () => {
+interface Props{
+  toggle: boolean
+}
+
+export const LinkNetworking = ({toggle}: Props) => {
   return (
     <div
       className={`absolute bottom-50 top-40 my-auto right-1 flex flex-col gap-2 h-[100px] items-end ${Style.table} `}
     >
-      <div className="bg-gray-400 rounded-lg">
+      <div className={`bg-gray-400 rounded-lg z-100 ${toggle ? '': '-mr-8'}`}>
         <LinkAction href="link">
           <Linkdnd />
         </LinkAction>
