@@ -1,10 +1,16 @@
+import { Link } from "react-router-dom";
 import { SpacingContent } from "../components/SpacingContent";
 import { Title } from "../components/Title";
 
 export const Setup = () => {
   return (
     <div className="flex flex-col gap-10 p-4 lg:p-10 z-10">
-      <Title title="Setup." />
+      <div className="flex gap-10 items-center">
+        <Title title="Setup." />
+        <Link to='/' className="text-4xl transition-colors hover:text-lime-400">
+          - Go Back Profile -
+        </Link>
+      </div>
       <SpacingContent>
         <div className="flex flex-col gap-10">
           <div>
