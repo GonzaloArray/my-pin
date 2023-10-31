@@ -7,11 +7,11 @@ import { Dashboard } from "../icons/Dashboard.icon";
 
 export const Proyects = () => {
   const [dashboard, setDashboard] = useState({
-    xr: "grid-cols-2",
-    sm: "grid-cols-2",
-    md: "grid-cols-2",
-    lg: "grid-cols-3",
-    xl: "grid-cols-4",
+    xr: "grid-cols-1",
+    sm: "sm:grid-cols-1",
+    md: "md:grid-cols-2",
+    lg: "lg:grid-cols-3",
+    xl: "xr:grid-cols-4",
     btnActive: 2,
   });
 
@@ -51,8 +51,8 @@ export const Proyects = () => {
           <button
             onClick={() =>
               handleDashRectangle({
-                xr: "grid-cols-2",
-                sm: "sm:grid-cols-2",
+                xr: "grid-cols-1",
+                sm: "sm:grid-cols-1",
                 md: "md:grid-cols-2",
                 lg: "lg:grid-cols-3",
                 xl: "xl:grid-cols-3",
@@ -68,8 +68,8 @@ export const Proyects = () => {
           <button
             onClick={() =>
               handleDashRectangle({
-                xr: "grid-cols-2",
-                sm: "sm:grid-cols-2",
+                xr: "grid-cols-1",
+                sm: "sm:grid-cols-1",
                 md: "md:grid-cols-3",
                 lg: "lg:grid-cols-4",
                 xl: "xl:grid-cols-4",

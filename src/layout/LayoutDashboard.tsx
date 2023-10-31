@@ -37,7 +37,7 @@ export const LayoutDashboard = () => {
       </div>
       <div
         className={`absolute right-0 flex flex-col ${
-          toggle ? "left-[410px]" : "left-5"
+          toggle ? "hidden sm:block sm:left-[410px]" : "left-5"
         }`}
       >
         <Outlet />
