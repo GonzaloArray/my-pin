@@ -33,7 +33,7 @@ export const UserDescription = ({setModalCv, toggle, setToggle, setModalFormData
       </div>
 
       <LinkNetworking toggle={toggle}/>
-      <SetupUser/>
+      <SetupUser toggle={toggle}/>
     </>
   );
 };
