@@ -9,7 +9,7 @@ export const Avatar = () => {
   const [qr, setQr] = useState(true);
 
   return (
-    <div className="flex justify-center mt-5 mb-10">
+    <div className="flex justify-center mt-5 mb-10 2xl:mt-20 2xl:mb-20">
       <div className={`${Style.avatar}`}>
         <button
           onClick={() => setQr(!qr)}
