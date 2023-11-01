@@ -8,7 +8,6 @@ export const Footer = () => {
         <a
           target="_blank"
           href="https://www.linkedin.com/in/gonzalo-arrayaran/"
-          className="mt-2"
         >
           <img className="w-[60px]" src={Melty} alt="" />
         </a>
