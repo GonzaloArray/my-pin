@@ -5,6 +5,7 @@ import { PopStatusUser } from "./PopStatusUser";
 import { SetupUser } from "./SetupUser";
 import Style from "./UserDescription.module.css";
 import Status from "../assets/status.png"
+import { BannerUser } from "./BannerUser";
 
 interface Props {
   toggle: boolean;
@@ -24,7 +25,7 @@ export const UserDescription = ({
     <>
       <button
         onClick={() => setToggle()}
-        className={`absolute  top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
+        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
           toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
         }`}
       >
@@ -32,6 +33,7 @@ export const UserDescription = ({
       </button>
       <div className="flex flex-col gap-3">
         <div>
+          <BannerUser/>
           <img src={Status} className="w-[70px] absolute left-[6rem] top-0" alt="Status User" />
           <PopStatusUser/>
           <Avatar />
