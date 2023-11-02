@@ -70,13 +70,13 @@ export const Setup = () => {
                   <button className="flex gap-2">
                     {KeyBoard.control2}:
                   </button>
-                  <p>Descarga el Cv del usuario en Ingles.</p>
+                  <p>Abre Github del usuario.</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <button className="flex gap-2">
                     {KeyBoard.control3}:
                   </button>
-                  <p>Abre el formulario de contacto para enviar un email al usuario.</p>
+                  <p>Abre Instagram del usuario.</p>
                 </div>
               </div>
 
