@@ -1,7 +1,7 @@
 
 export const GuideCaptureContent = () => {
   return (
-    <div className='absolute border-2 border-green-500 -top-5 -bottom-5 left-0 md:-right-6 z-10'>
+    <div className='absolute border-2 border-green-500 -top-5 -bottom-5 left-0 right-0 md:-right-6 z-10'>
     </div>
   )
 }
