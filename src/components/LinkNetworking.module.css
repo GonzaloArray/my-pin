@@ -11,3 +11,31 @@
   top: -2rem;
   right: -0.3rem;
 }
+
+.tooltip{
+  display: none;
+  transition: linear 1s;
+}
+.tooltip::after{
+  content: '';
+  width: .8rem;
+  height: .8rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: -.3rem;
+  background-color: #646363;
+  rotate: 45deg;
+}
+.link_active:hover .tooltip{
+  display: block;
+  transition: linear 1s;
+  position: absolute;
+  border-radius: 2rem;
+  top: 0rem;
+  right: -5.3rem;
+  background-color: #646363;
+  padding: .7rem;
+}
+
