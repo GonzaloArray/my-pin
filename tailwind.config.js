@@ -9,6 +9,10 @@ export default {
       backgroundColor: {
         'black-100': '#00000058',
         'white-100': '#ffffff28'
+      },
+      borderColor: {
+        'black-100': '#00000058',
+        'white-100': '#ffffff28'
       }
     },
   },

@@ -4,6 +4,12 @@ import { Proyects } from "./page/Proyects"
 import { Setup } from "./page/Setup"
 import { Login } from "./auth/page/Login"
 import { LayoutAuth } from "./auth/layout/LayoutAuth"
+import { Register } from "./auth/page/Register"
+import { LayoutSelfManagement } from "./dashboard/layout/LayoutSelfManagement"
+import { ProfileUser } from "./dashboard/page/ProfileUser"
+import { LearningUser } from "./dashboard/page/LearningUser"
+import { ProyectUser } from "./dashboard/page/ProyectUser"
+import { SkillsUser } from "./dashboard/page/SkillsUser"
 
 function App() {
   return (
@@ -14,7 +20,13 @@ function App() {
       </Route>
       <Route path="auth" element={<LayoutAuth/>}>
         <Route index element={<Login/>} />
-        <Route path="register" element={<Login/>} />
+        <Route path="register" element={<Register />} />
+      </Route>
+      <Route path="dashboard" element={<LayoutSelfManagement />}>
+        <Route index element={<ProfileUser />} />
+        <Route path="proyect" element={<ProyectUser />} />
+        <Route path="skills" element={<SkillsUser />} />
+        <Route path="learning" element={<LearningUser />} />
       </Route>
     </Routes>
   )

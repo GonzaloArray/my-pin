@@ -40,7 +40,7 @@ export const Proyects = () => {
 
 
   const [dashboard, setDashboard] = useState({
-    xr: "grid-cols-1",
+    xr: "grid-cols-2",
     sm: "sm:grid-cols-1",
     md: "md:grid-cols-2",
     lg: "lg:grid-cols-3",
@@ -83,8 +83,8 @@ export const Proyects = () => {
           <button
             onClick={() =>
               handleDashRectangle({
-                xr: "grid-cols-1",
-                sm: "sm:grid-cols-1",
+                xr: "grid-cols-2",
+                sm: "sm:grid-cols-2",
                 md: "md:grid-cols-2",
                 lg: "lg:grid-cols-3",
                 xl: "xl:grid-cols-3",
@@ -99,8 +99,8 @@ export const Proyects = () => {
           <button
             onClick={() =>
               handleDashRectangle({
-                xr: "grid-cols-1",
-                sm: "sm:grid-cols-1",
+                xr: "grid-cols-3",
+                sm: "sm:grid-cols-3",
                 md: "md:grid-cols-3",
                 lg: "lg:grid-cols-4",
                 xl: "xl:grid-cols-4",
@@ -119,7 +119,7 @@ export const Proyects = () => {
           status === 1 && <GuideCaptureContent />
         }
         <div
-          className={`grid ${dashboard.xr} ${dashboard.sm} ${dashboard.md} ${dashboard.lg} ${dashboard.xl} gap-4 box-border`}
+          className={`grid ${dashboard.xr} ${dashboard.sm} ${dashboard.md} ${dashboard.lg} ${dashboard.xl} gap-1 md:gap-4 box-border`}
         >
           <Card
             link="https://github.com/No-Country/c12-40-ft-react-agregarback.git"

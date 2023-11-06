@@ -53,7 +53,7 @@ export const Setup = () => {
           <div>
             <Title title="KeyBoard Commands." />
             <SpacingContent>
-              <div className="grid grid-cols-2 md:w-[600px] gap-4 mt-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-4 mt-10">
                 <div className="flex items-center gap-4">
                   <button className="flex gap-2">
                     {KeyBoard.esc}:
