@@ -1,19 +1,18 @@
-import { JSFigure } from "../common/icon/Figure.icon";
-import { BgCard } from "../icons/BgCard.icon";
-import { Github } from "../icons/Github.icon";
+import { JSFigure } from "../../common/icon/Figure.icon"
+import { BgCard } from "../../icons/BgCard.icon"
+import { Github } from "../../icons/Github.icon"
 
 interface Props {
   title: string;
   description: string;
-  link: string;
+  id?: string;
+  className: string
 }
 
-export const Card = ({ title, description, link }: Props) => {
+export const CardProyect = ({ title, description, className }: Props) => {
   return (
-    <a
-      target="__blank"
-      href={link}
-      className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
+    <div
+      className={className}
     >
       <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 text-center z-40`}>
         {title}
@@ -29,6 +28,6 @@ export const Card = ({ title, description, link }: Props) => {
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
         <JSFigure/>
       </div>
-    </a>
-  );
-};
+    </div>
+  )
+}

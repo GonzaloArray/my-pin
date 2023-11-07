@@ -7,7 +7,6 @@ import { LayoutAuth } from "./auth/layout/LayoutAuth"
 import { Register } from "./auth/page/Register"
 import { LayoutSelfManagement } from "./dashboard/layout/LayoutSelfManagement"
 import { ProfileUser } from "./dashboard/page/ProfileUser"
-import { LearningUser } from "./dashboard/page/LearningUser"
 import { ProyectUser } from "./dashboard/page/ProyectUser"
 import { SkillsUser } from "./dashboard/page/SkillsUser"
 
@@ -26,7 +25,6 @@ function App() {
         <Route index element={<ProfileUser />} />
         <Route path="proyect" element={<ProyectUser />} />
         <Route path="skills" element={<SkillsUser />} />
-        <Route path="learning" element={<LearningUser />} />
       </Route>
     </Routes>
   )

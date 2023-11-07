@@ -8,7 +8,7 @@ export const LayoutSelfManagement = () => {
       <Header />
       <div>
         <Aside />
-        <main className="absolute right-0 flex flex-col z-0 sm:block sm:left-[300px]">
+        <main className="absolute right-0 top-12 flex flex-col z-0 sm:block sm:left-[300px]">
           <div className="flex flex-col gap-10 p-4 lg:p-10">
             <Outlet />
           </div>
