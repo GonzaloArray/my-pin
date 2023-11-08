@@ -19,7 +19,7 @@ export const Card = ({ title, description, link }: Props) => {
         {title}
       </h2>
 
-      <p className="z-40 text-white text-sm md:text-lg mt-2 w-full line-clamp-2 md:line-clamp-3" style={{ wordBreak: 'break-all' }}>
+      <p className="z-40 text-white text-center text-sm md:text-lg mt-2 w-full line-clamp-2 md:line-clamp-3" style={{ wordBreak: 'break-all' }}>
         {description}
       </p>
 
