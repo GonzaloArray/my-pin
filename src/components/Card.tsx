@@ -13,13 +13,17 @@ export const Card = ({ title, description, link }: Props) => {
     <a
       target="__blank"
       href={link}
-      className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[180px] flex flex-col justify-center items-center overflow-hidden p-5 md:p-10"
+      className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[180px] flex flex-col justify-center items-center overflow-hidden px-5 md:px-10"
     >
-      <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 z-40`}>
+      <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 line-clamp-1 md:line-clamp-2 z-40`}>
         {title}
       </h2>
 
-      <p className="z-50 text-white text-center text-sm md:text-lg mt-2 line-clamp-1 md:line-clamp-3">{description}</p>
+      <p className="z-40 text-white text-sm md:text-lg mt-2 w-full line-clamp-2 md:line-clamp-3" style={{ wordBreak: 'break-all' }}>
+        {description}
+      </p>
+
+
       <div className="absolute top-0 right-0 md:p-2 z-40">
         <Github />
       </div>
@@ -27,7 +31,7 @@ export const Card = ({ title, description, link }: Props) => {
         <BgCard />
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
-        <JSFigure/>
+        <JSFigure />
       </div>
     </a>
   );
