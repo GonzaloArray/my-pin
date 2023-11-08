@@ -13,9 +13,9 @@ export const Card = ({ title, description, link }: Props) => {
     <a
       target="__blank"
       href={link}
-      className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
+      className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[180px] flex flex-col justify-center items-center overflow-hidden p-5 md:p-10"
     >
-      <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 text-center z-40`}>
+      <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 z-40`}>
         {title}
       </h2>
 
