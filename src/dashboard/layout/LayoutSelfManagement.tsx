@@ -16,7 +16,7 @@ export const LayoutSelfManagement = () => {
       <Header />
       <div>
         <Aside toggle={toggle} setToggle={handleToggle}/>
-        <main className={`absolute right-0 flex flex-col top-12 z-0 ${toggle ? "hidden sm:block sm:left-[410px]" : "left-3 md:left-10"
+        <main className={`absolute right-0 flex flex-col top-12 z-10 ${toggle ? "hidden sm:block sm:left-[300px]" : "left-3 md:left-4"
           }`}>
           <div className="flex flex-col gap-10 pt-10">
             <div className="p-4 lg:p-10">

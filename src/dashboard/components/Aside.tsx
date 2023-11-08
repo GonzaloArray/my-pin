@@ -13,7 +13,7 @@ export const Aside = ({toggle, setToggle}: Props) => {
   }`}>
       <button
         onClick={() => setToggle()}
-        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
+        className={`absolute z-40 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
           toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
         }`}
       >
