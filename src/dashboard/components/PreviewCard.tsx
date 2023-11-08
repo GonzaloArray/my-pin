@@ -12,20 +12,17 @@ interface Props {
 
 export const PreviewCard = ({ title, description, className }: Props) => {
   const [transform, setTransform] = useState('none');
-  const [centerPoint, setCenterPoint] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const cardProyectElm = document.getElementById("cardProyect");
     if (!cardProyectElm) {
       return;
     }
-    const { x, y, width, height } = cardProyectElm.getBoundingClientRect();
-
-    setCenterPoint({ x: x + width / 2, y: y + height / 2 });
 
     const handleMouseMove = (e: MouseEvent) => {
-      const degreeX = (e.clientY - centerPoint.y) * 0.1;
-      const degreeY = (e.clientX - centerPoint.x) * -0.1;
+      const { x, y, width, height } = cardProyectElm.getBoundingClientRect();
+      const degreeX = (e.clientY - (y + height / 2)) * 0.1;
+      const degreeY = (e.clientX - (x + width / 2)) * -0.1;
 
       setTransform(`
         perspective(1000px)
@@ -36,8 +33,8 @@ export const PreviewCard = ({ title, description, className }: Props) => {
 
     const handleMouseLeave = () => {
       setTransform('none');
-    }
-  
+    };
+
     cardProyectElm.addEventListener("mousemove", handleMouseMove);
     cardProyectElm.addEventListener("mouseleave", handleMouseLeave);
 
@@ -45,7 +42,8 @@ export const PreviewCard = ({ title, description, className }: Props) => {
       cardProyectElm.removeEventListener("mousemove", handleMouseMove);
       cardProyectElm.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [centerPoint]);
+  }, []);
+
 
   return (
     <div
@@ -65,7 +63,7 @@ export const PreviewCard = ({ title, description, className }: Props) => {
         <BgCard />
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
-        <JSFigure/>
+        <JSFigure />
       </div>
     </div>
   );

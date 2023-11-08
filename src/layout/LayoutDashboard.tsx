@@ -46,18 +46,18 @@ export const LayoutDashboard = () => {
         <Modal modalCv={modalCv} setModalCv={handleModalCv}>
           <div className="flex flex-col gap-3">
             <h2 className="text-center underline underline-offset-4">Dowload Resume</h2>
-            <div className="flex gap-8 justify-between flex-1">
+            <div className="flex gap-8 justify-evenly flex-1 mt-5">
               <a
                 target="_blank"
                 href=""
-                className="hover:bg-white-100 rounded-xl p-3"
+                className="hover:bg-white-100 rounded-xl p-3 w-full text-center"
               >
                 In Spanish
               </a>
               <a
                 target="_blank"
                 href=""
-                className="hover:bg-white-100 rounded-xl p-3"
+                className="hover:bg-white-100 rounded-xl p-3 w-full text-center"
               >
                 In English
               </a>

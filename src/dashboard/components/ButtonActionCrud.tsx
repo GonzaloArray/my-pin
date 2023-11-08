@@ -1,13 +1,14 @@
 import { ReactNode } from "react"
 
 interface Props{
-  children: ReactNode
+  children: ReactNode,
+  click?: () => void
 }
 
 
-export const ButtonAddNewProyect = ({children}: Props) => {
+export const ButtonAddNewProyect = ({children, click}: Props) => {
   return (
-    <button type="button" className="border border-white-100 py-3 px-10 hover:bg-white-100 w-[200px]">
+    <button onClick={click} type="button" className="border border-white-100 py-3 px-10 hover:bg-white-100 w-[200px]">
       {children}
     </button>
   )

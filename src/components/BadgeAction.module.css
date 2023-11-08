@@ -1,0 +1,9 @@
+.delete{
+  color: red;
+  font-size: 1rem;
+}
+
+.add{
+  color: rgb(0, 47, 255);
+  font-size: 2rem;
+}
