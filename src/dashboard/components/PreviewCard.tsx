@@ -2,14 +2,13 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { JSFigure } from "../../common/icon/Figure.icon"
 import { BgCard } from "../../icons/BgCard.icon"
 import { Github } from "../../icons/Github.icon";
-import { StackItem } from "../../type";
-import { Stack } from "../../common/icon/Stack.icon";
+import { Card } from "../../type";
 
 interface Props {
   children: ReactNode;
   id?: string;
   className: string;
-  icon: string
+  icon: Card
 }
 
 export const PreviewCard = ({ children, className, icon }: Props) => {
@@ -46,9 +45,6 @@ export const PreviewCard = ({ children, className, icon }: Props) => {
     };
   }, []);
 
-  const stackEntries = Object.entries(Stack) as [string, StackItem][];
-  const iconStack = stackEntries.find(([, stack]) => stack.name === icon)
-
   return (
     <div
       /* Mejorar esta parte para que cuando edites o envies algo no aparezca el efecto 3d */
@@ -67,7 +63,7 @@ export const PreviewCard = ({ children, className, icon }: Props) => {
       </div>
       <div className="absolute z-10 overflow-y opacity-40 -right-8 -bottom-10 h-full flex items-end">
         <JSFigure>
-          {iconStack?.[1]?.icon && React.cloneElement(iconStack[1].icon, {
+          {icon.icon && React.cloneElement(icon.icon, {
             width: "190",
             height: "190",
           })}

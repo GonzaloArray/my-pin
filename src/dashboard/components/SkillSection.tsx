@@ -17,7 +17,7 @@ export const SkillSection = ({ selectStackIcon, icon }: Props) => {
   return (
     <div className={`animate__animated transition-all animate__fadeIn`}>
       <h2 className="text-center mb-10 text-2xl">Selecciona tu Stack</h2>
-      <div className="flex justify-center items-center gap-10 ">
+      <div className="flex flex-wrap justify-center items-center gap-10 ">
         {stackEntries.map(([key, stack]) => (
           <button
             key={key}

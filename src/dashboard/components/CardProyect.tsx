@@ -1,3 +1,4 @@
+import React from "react";
 import { JSFigure } from "../../common/icon/Figure.icon"
 import { BgCard } from "../../icons/BgCard.icon"
 import { Github } from "../../icons/Github.icon"
@@ -6,10 +7,11 @@ interface Props {
   title: string;
   description: string;
   id?: string;
-  className: string
+  className: string;
+  icon: React.ReactElement;
 }
 
-export const CardProyect = ({ title, description, className }: Props) => {
+export const CardProyect = ({ title, description, className, icon }: Props) => {
   return (
     <div
       className={className}
@@ -26,7 +28,12 @@ export const CardProyect = ({ title, description, className }: Props) => {
         <BgCard />
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
-        <JSFigure/>
+        <JSFigure>
+          {icon && React.cloneElement(icon, {
+            width: "190",
+            height: "190",
+          })}
+        </JSFigure>
       </div>
     </div>
   )

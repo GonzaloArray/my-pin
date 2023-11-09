@@ -11,14 +11,15 @@ import { CardProyect } from "../components/CardProyect";
 import { PreviewCard } from "../components/PreviewCard";
 import { SkillSection } from "../components/SkillSection";
 import { FormCard } from "../components/form/FormCard";
-import { StackItem } from "../../type";
+import { Card, StackItem } from "../../type";
 
 export const ProyectUser = () => {
   const [activeSectionSkill, setActiveSectionSkill] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({
+  const [cards, setCards] = useState<Card[]>([]);
+  const [selectedCard, setSelectedCard] = useState<Card>({
     title: "##################################",
     description: "#################### ############ ############# #######",
-    icon: "JS"
+    icon: null
   });
 
   const handleToggleStackSection = () => {
@@ -28,7 +29,7 @@ export const ProyectUser = () => {
   const handleSelectStackIconCard = (stack: StackItem) => {
     setSelectedCard({
       ...selectedCard,
-      icon: stack.name
+      icon: stack.icon,
     });
   };
 
@@ -44,15 +45,27 @@ export const ProyectUser = () => {
       title: title,
       description: description,
     });
+    setCards([
+      ...cards,
+      {
+        ...selectedCard,
+        title: title,
+        description: description,
+        id: crypto.randomUUID(),
+      },
+    ]);
 
     setActiveSectionSkill(false);
   };
 
   return (
     <div className="flex flex-col gap-4 md:gap-8">
-      <div className="flex flex-col gap-4 justify-center items-center md:mb-10 mt-5 py-10">
+      <div className="flex flex-col gap-4 justify-center items-center md:mb-10 py-10 md:p-0">
         <BgProyect />
-        <PreviewCard icon={selectedCard.icon} className=" bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[350px] xl:h-[300px] w-full lg:w-[550px] flex flex-col justify-center items-center overflow-hidden">
+        <PreviewCard
+          icon={selectedCard}
+          className=" bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[350px] xl:h-[300px] w-full lg:w-[550px] flex flex-col justify-center items-center overflow-hidden"
+        >
           {activeSectionSkill ? (
             <FormCard
               submit={handleAddNewProyect}
@@ -84,26 +97,23 @@ export const ProyectUser = () => {
         <ButtonEditProyect>Edit Proyect</ButtonEditProyect>
         <ButtonDeleteProyect>Delete Proyect</ButtonDeleteProyect>
       </div>
-      <SkillSection icon={selectedCard.icon} selectStackIcon={handleSelectStackIconCard} />
+      <SkillSection
+        icon={typeof selectedCard.icon === 'string' ? selectedCard.icon : ""}
+        selectStackIcon={handleSelectStackIconCard}
+      />
       <div className="flex flex-col gap-3 mt-10 z-40">
         <Title title="Proyects" />
         <SpacingContent>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <CardProyect
-              title="Calculator UI and Functional"
-              description="Website"
-              className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
-            />
-            <CardProyect
-              title="Calculator UI and Functional"
-              description="Website"
-              className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
-            />
-            <CardProyect
-              title="Calculator UI and Functional"
-              description="Website"
-              className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
-            />
+            {cards.map((card) => (
+              <CardProyect
+                key={card.id}
+                title={card.title}
+                description={card.description}
+                icon={card.icon !== null && card.icon !== undefined ? card.icon : <></>}
+                className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
+              />
+            ))}
           </div>
         </SpacingContent>
       </div>
