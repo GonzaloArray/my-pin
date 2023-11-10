@@ -20,6 +20,7 @@ export const SkillSection = ({ selectStackIcon, icon }: Props) => {
       <div className="flex flex-wrap justify-center items-center gap-10 ">
         {stackEntries.map(([key, stack]) => (
           <button
+            type="button"
             key={key}
             onClick={() => selectStackIcon(stack)}
             className={`hover:scale-125 transition-all relative ${icon === stack.name ? `${Style.activeSkill}` : ''}`}

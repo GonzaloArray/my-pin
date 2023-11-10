@@ -2,7 +2,24 @@ import { ReactNode } from "react"
 
 interface Props{
   children: ReactNode,
-  click?: () => void
+  click?: () => void,
+  isActive?: boolean
+}
+
+export const ButtonGenericAction = ({children, click, isActive}: Props) => {
+  return (
+    <button disabled={isActive} onClick={click} type="button" className={`border border-white-100 py-3 px-10  w-[200px] ${isActive ? 'opacity-50 cursor-not-allowed': 'hover:bg-white-100'}`}>
+      {children}
+    </button>
+  )
+}
+
+export const ButtonActionSubmit = ({children, isActive}: Props) => {
+  return (
+    <button disabled={isActive} type="submit" className={`border border-blue-500 py-3 px-10  w-[200px] ${isActive ? 'opacity-50 cursor-not-allowed': 'hover:bg-white-100'}`}>
+      {children}
+    </button>
+  )
 }
 
 
@@ -16,7 +33,7 @@ export const ButtonAddNewProyect = ({children, click}: Props) => {
 
 export const ButtonEditProyect = ({children}: Props) => {
   return (
-    <button className="border border-white-100 py-3 px-10 hover:bg-white-100 hover:border-blue-300 w-[200px]">
+    <button type="button" className="border border-white-100 py-3 px-10 hover:bg-white-100 hover:border-blue-300 w-[200px]">
       {children}
     </button>
   )
