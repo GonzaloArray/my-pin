@@ -19,7 +19,11 @@ export const ProyectUser = () => {
   const [selectedCard, setSelectedCard] = useState<Card>({
     title: "##################################",
     description: "#################### ############ ############# #######",
-    icon: null
+    icon: {
+      icon: null,
+      name: 'JS',
+      id: ''
+    }
   });
 
   const handleToggleStackSection = () => {
@@ -29,7 +33,7 @@ export const ProyectUser = () => {
   const handleSelectStackIconCard = (stack: StackItem) => {
     setSelectedCard({
       ...selectedCard,
-      icon: stack.icon,
+      icon: stack,
     });
   };
 
@@ -98,7 +102,7 @@ export const ProyectUser = () => {
         <ButtonDeleteProyect>Delete Proyect</ButtonDeleteProyect>
       </div>
       <SkillSection
-        icon={typeof selectedCard.icon === 'string' ? selectedCard.icon : ""}
+        icon={selectedCard.icon?.name ?? ""}
         selectStackIcon={handleSelectStackIconCard}
       />
       <div className="flex flex-col gap-3 mt-10 z-40">
@@ -110,7 +114,7 @@ export const ProyectUser = () => {
                 key={card.id}
                 title={card.title}
                 description={card.description}
-                icon={card.icon !== null && card.icon !== undefined ? card.icon : <></>}
+                icon={card?.icon?.icon ?? <></>}
                 className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
               />
             ))}

@@ -22,9 +22,9 @@ export const SkillSection = ({ selectStackIcon, icon }: Props) => {
           <button
             key={key}
             onClick={() => selectStackIcon(stack)}
-            className={`hover:scale-125 transition-all relative ${icon === stack.name ? `${Style.activeSkill}`: ''}`}
+            className={`hover:scale-125 transition-all relative ${icon === stack.name ? `${Style.activeSkill}` : ''}`}
           >
-            {React.cloneElement(stack.icon, {
+            {stack?.icon && React.cloneElement(stack.icon, {
               width: "80",
               height: "80",
             })}

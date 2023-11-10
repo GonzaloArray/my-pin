@@ -4,7 +4,7 @@ export interface Skill{
 }
 
 export interface StackItem {
-  icon: React.ReactElement;
+  icon: React.ReactElement | null;
   name: string;
   id: string;
 }
@@ -13,6 +13,6 @@ export interface StackItem {
 export interface Card {
   title: string;
   description: string;
-  icon: React.ReactElement | null;
+  icon: StackItem | null;
   id?: string;
 }

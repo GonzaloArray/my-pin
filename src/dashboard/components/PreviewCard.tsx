@@ -3,6 +3,7 @@ import { JSFigure } from "../../common/icon/Figure.icon"
 import { BgCard } from "../../icons/BgCard.icon"
 import { Github } from "../../icons/Github.icon";
 import { Card } from "../../type";
+import { Stack } from "../../common/icon/Stack.icon";
 
 interface Props {
   children: ReactNode;
@@ -63,9 +64,18 @@ export const PreviewCard = ({ children, className, icon }: Props) => {
       </div>
       <div className="absolute z-10 overflow-y opacity-40 -right-8 -bottom-10 h-full flex items-end">
         <JSFigure>
-          {icon.icon && React.cloneElement(icon.icon, {
-            width: "190",
-            height: "190",
+          {Object.entries(Stack).map((stack) => {
+            if (icon.icon?.name === stack[1].name) {
+              return (
+                <div key={stack[1].id}>
+                  {React.cloneElement(stack[1].icon, {
+                    width: "190",
+                    height: "190",
+                  })}
+                </div>
+              );
+            }
+            return null; // Agrega un retorno nulo si la condición no se cumple
           })}
         </JSFigure>
       </div>
