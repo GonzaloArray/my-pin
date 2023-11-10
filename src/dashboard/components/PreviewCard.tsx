@@ -9,10 +9,11 @@ interface Props {
   children: ReactNode;
   id?: string;
   className: string;
-  icon: Card
+  icon: Card;
+  active3d: boolean;
 }
 
-export const PreviewCard = ({ children, className, icon }: Props) => {
+export const PreviewCard = ({ children, className, icon, active3d }: Props) => {
   const [transform, setTransform] = useState('none');
 
   useEffect(() => {
@@ -49,9 +50,9 @@ export const PreviewCard = ({ children, className, icon }: Props) => {
   return (
     <div
       /* Mejorar esta parte para que cuando edites o envies algo no aparezca el efecto 3d */
-      // id="cardProyect"
+      id="cardProyect"
       className={className}
-      style={{ transform }}
+      style={active3d ? {} : {transform}}
     >
       <div className="p-20 z-40">
         {children}

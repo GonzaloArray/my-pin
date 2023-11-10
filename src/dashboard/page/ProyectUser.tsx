@@ -67,6 +67,7 @@ export const ProyectUser = () => {
       <div className="flex flex-col gap-4 justify-center items-center md:mb-10 py-10 md:p-0">
         <BgProyect />
         <PreviewCard
+          active3d={activeSectionSkill}
           icon={selectedCard}
           className=" bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[150px] md:h-[350px] xl:h-[300px] w-full lg:w-[550px] flex flex-col justify-center items-center overflow-hidden"
         >
