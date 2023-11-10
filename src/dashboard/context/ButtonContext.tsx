@@ -29,8 +29,8 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [cards, setCards] = useState<Card[]>([]);
 
   const [selectedCard, setSelectedCard] = useState<Card>({
-    title: "##################################",
-    description: "#################### ############ ############# #######",
+    title: "Title Example Melty",
+    description: "Description Example Melty",
     icon: {
       icon: null,
       name: "JS",
@@ -47,11 +47,6 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
   const handleAddNewProyect = (title: string, description: string) => {
 
-    setSelectedCard({
-      ...selectedCard,
-      title: title,
-      description: description,
-    });
     setCards([
       ...cards,
       {
@@ -61,6 +56,16 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         id: crypto.randomUUID(),
       },
     ]);
+
+    setSelectedCard({
+      title: "Title Example Melty",
+      description: "Description Example Melty",
+      icon: {
+        icon: null,
+        name: "JS",
+        id: "",
+      },
+    });
 
     setButtonState('normal');
     handleNotActiveEditCard();
