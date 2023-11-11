@@ -3,6 +3,7 @@ import { ButtonActionSubmit, ButtonDeleteProyect, ButtonGenericAction } from "./
 type Crud = 'add' | 'delete'|'edit'| 'normal';
 interface Props{
   onClick: (valor: Crud) => void;
+  isActive?: boolean;
 }
 interface ButtonStates {
   normal: ReactNode;
@@ -17,10 +18,10 @@ const AnimatedContainer = ({children}: {children: ReactNode}) => (
   </div>
 );
 
-export const NormalState = ({ onClick }: { onClick: (state: keyof ButtonStates) => void }) => (
+export const NormalState = ({ onClick, isActive }: { onClick: (state: keyof ButtonStates) => void, isActive: boolean }) => (
   <AnimatedContainer>
     <ButtonGenericAction click={() => onClick('add')}>Add New Project</ButtonGenericAction>
-    <ButtonGenericAction isActive={true} click={() => onClick('edit')}>Edit Project</ButtonGenericAction>
+    <ButtonGenericAction isActive={isActive} click={() => onClick('edit')}>Edit Project</ButtonGenericAction>
     <ButtonDeleteProyect click={() => onClick('delete')}>Delete Project</ButtonDeleteProyect>
   </AnimatedContainer>
 );
@@ -35,6 +36,6 @@ export const AddState = ({ onClick }: Props) => (
 export const EditState = ({ onClick }: Props) => (
   <AnimatedContainer>
     <ButtonGenericAction click={() => onClick('normal')}>Cancel Edit</ButtonGenericAction>
-    <ButtonActionSubmit isActive={true}>Edit Project</ButtonActionSubmit>
+    <ButtonActionSubmit>Save Edit</ButtonActionSubmit>
   </AnimatedContainer>
 );

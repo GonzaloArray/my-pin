@@ -8,8 +8,7 @@ import { SkillSection } from '../SkillSection'
 import { BgProyect } from '../BgProyect'
 
 export const Form = () => {
-const {activeSectionSkill, selectedCard, handleSelectStackIconCard, handleAddNewProyect} =useButtonContext()
-
+const {activeSectionSkill, buttonState, selectedCard, handleSelectStackIconCard, handleAddNewProyect, handleUpdateProyect} =useButtonContext()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,7 +17,12 @@ const {activeSectionSkill, selectedCard, handleSelectStackIconCard, handleAddNew
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
 
-    handleAddNewProyect(title, description)
+    if (buttonState === 'add') {
+      handleAddNewProyect(title, description)
+    }else if (buttonState === 'edit') {
+      handleUpdateProyect(title, description)
+    }
+
   };
 
   return (

@@ -6,14 +6,16 @@ import { Github } from "../../icons/Github.icon"
 interface Props {
   title: string;
   description: string;
-  id?: string;
+  id: string;
   className: string;
   icon: React.ReactElement;
+  click: (id: string) => void;
 }
 
-export const CardProyect = ({ title, description, className, icon }: Props) => {
+export const CardProyect = ({ title, description, className,id, icon, click }: Props) => {
   return (
     <div
+      onClick={() => click(id)}
       className={className}
     >
       <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 text-center z-40`}>

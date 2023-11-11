@@ -10,11 +10,10 @@ interface ButtonStates {
 
 
 export const ControlActionCard = () => {
-  const {buttonState, handleButtonClick} = useButtonContext()
-
+  const {buttonState, activeEditProyect, handleButtonClick} = useButtonContext()
   const renderButtons = () => {
     const stateComponents: ButtonStates = {
-      normal: <NormalState onClick={handleButtonClick} />,
+      normal: <NormalState isActive={activeEditProyect} onClick={handleButtonClick} />,
       add: <AddState onClick={handleButtonClick} />,
       edit: <EditState onClick={handleButtonClick} />,
     };

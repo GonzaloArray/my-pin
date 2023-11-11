@@ -4,7 +4,15 @@ import { CardProyect } from './CardProyect'
 import { useButtonContext } from '../context/ButtonContext'
 
 export const ProyectCards = () => {
-  const {cards} = useButtonContext()
+  const {cards, handleEditProyect} = useButtonContext()
+
+  const handleSelectProyect = (id: string) => {
+    const findProyect = cards.find(c => c.id === id)
+
+    if (findProyect) {
+      handleEditProyect(findProyect)
+    }
+  }
 
   return (
     <div className="flex flex-col gap-3 mt-10 z-40">
@@ -13,7 +21,9 @@ export const ProyectCards = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {cards.map((card) => (
             <CardProyect
+              click={handleSelectProyect}
               key={card.id}
+              id={card.id ?? ''}
               title={card.title}
               description={card.description}
               icon={card?.icon?.icon ?? <></>}
