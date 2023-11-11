@@ -2,6 +2,7 @@ import { Title } from '../../components/Title'
 import { SpacingContent } from '../../components/SpacingContent'
 import { CardProyect } from './CardProyect'
 import { useButtonContext } from '../context/ButtonContext'
+import { AlertInformation } from '../../common/components/Alert'
 
 export const ProyectCards = () => {
   const {cards, selectedCard, handleEditProyect} = useButtonContext()
@@ -19,6 +20,9 @@ export const ProyectCards = () => {
       <Title title="Proyects" />
       <SpacingContent>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {
+            cards.length === 0 && <AlertInformation>No Proyect Yet...</AlertInformation>
+          }
           {cards.map((card) => (
             <CardProyect
               click={handleSelectProyect}
