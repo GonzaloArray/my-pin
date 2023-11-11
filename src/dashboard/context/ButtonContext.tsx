@@ -13,6 +13,7 @@ export interface ButtonContextProps {
   handleSelectStackIconCard: (stack: StackItem) => void;
   handleEditProyect: (card: Card) => void;
   handleUpdateProyect: (title: string, description: string) => void;
+  handleDeleteProyect: () => void;
 }
 
 export const ButtonContext = createContext<ButtonContextProps | undefined>(undefined);
@@ -111,6 +112,27 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     setActiveSectionSkill(false)
   };
 
+  const handleDeleteProyect = () => {
+    const filterProyect = cards.filter(card => card.id !== selectedCard.id)
+    console.log(filterProyect);
+    
+    setCards(filterProyect);
+
+    setSelectedCard({
+      title: "Title Example Melty",
+      description: "Description Example Melty",
+      icon: {
+        icon: null,
+        name: "JS",
+        id: "",
+      },
+    });
+
+    setButtonState('normal');
+    setActiveEditProyect(true)
+    handleNotActiveEditCard();
+  }
+
   const value: ButtonContextProps = {
     activeSectionSkill,
     buttonState,
@@ -122,7 +144,8 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     handleNotActiveEditCard,
     handleSelectStackIconCard,
     handleEditProyect,
-    handleUpdateProyect
+    handleUpdateProyect,
+    handleDeleteProyect
   };
 
   return <ButtonContext.Provider value={value}>{children}</ButtonContext.Provider>;

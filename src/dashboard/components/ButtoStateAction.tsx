@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ButtonActionSubmit, ButtonDeleteProyect, ButtonGenericAction } from "./ButtonActionCrud";
-type Crud = 'add' | 'delete'|'edit'| 'normal';
-interface Props{
+type Crud = 'add' | 'delete' | 'edit' | 'normal';
+interface Props {
   onClick: (valor: Crud) => void;
   isActive?: boolean;
 }
@@ -12,17 +12,23 @@ interface ButtonStates {
   delete: ReactNode;
 }
 
-const AnimatedContainer = ({children}: {children: ReactNode}) => (
+interface PropNormalState {
+  onClick: (state: keyof ButtonStates) => void, 
+  isActive: boolean, 
+  onDelete: () => void
+}
+
+const AnimatedContainer = ({ children }: { children: ReactNode }) => (
   <div className={`animate__animated animate__fadeIn flex flex-wrap gap-3`}>
     {children}
   </div>
 );
 
-export const NormalState = ({ onClick, isActive }: { onClick: (state: keyof ButtonStates) => void, isActive: boolean }) => (
+export const NormalState = ({ onClick, isActive, onDelete }: PropNormalState) => (
   <AnimatedContainer>
     <ButtonGenericAction click={() => onClick('add')}>Add New Project</ButtonGenericAction>
     <ButtonGenericAction isActive={isActive} click={() => onClick('edit')}>Edit Project</ButtonGenericAction>
-    <ButtonDeleteProyect click={() => onClick('delete')}>Delete Project</ButtonDeleteProyect>
+    <ButtonDeleteProyect isActive={isActive} click={() => onDelete()}>Delete Project</ButtonDeleteProyect>
   </AnimatedContainer>
 );
 

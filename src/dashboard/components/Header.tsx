@@ -8,8 +8,8 @@ export const Header = () => {
         <Melty />
 
         <div className="flex gap-3">
-          <h3>que hago</h3>
-          <h3>que hago</h3>
+          <h3>Home</h3>
+          <h3>Contact</h3>
         </div>
       </header>
     </div>

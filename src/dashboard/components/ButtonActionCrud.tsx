@@ -39,9 +39,9 @@ export const ButtonEditProyect = ({children}: Props) => {
   )
 }
 
-export const ButtonDeleteProyect = ({children}: Props) => {
+export const ButtonDeleteProyect = ({children, isActive, click}: Props) => {
   return (
-    <button className="border border-white-100 bg-red-600 py-3 px-10 hover:bg-red-500 w-[200px]">
+    <button type="button" onClick={click} disabled={isActive} className={`border bg-red-600 border-white-100 py-3 px-10 w-[200px] ${isActive ? 'opacity-50 cursor-not-allowed': 'hover:bg-red-500'}`}>
       {children}
     </button>
   )
