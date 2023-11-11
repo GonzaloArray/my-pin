@@ -4,7 +4,7 @@ import { CardProyect } from './CardProyect'
 import { useButtonContext } from '../context/ButtonContext'
 
 export const ProyectCards = () => {
-  const {cards, handleEditProyect} = useButtonContext()
+  const {cards, selectedCard, handleEditProyect} = useButtonContext()
 
   const handleSelectProyect = (id: string) => {
     const findProyect = cards.find(c => c.id === id)
@@ -27,7 +27,7 @@ export const ProyectCards = () => {
               title={card.title}
               description={card.description}
               icon={card?.icon?.icon ?? <></>}
-              className="cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border md:hover:scale-105 md:hover:border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden"
+              className={`cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden ${card.id === selectedCard.id ? 'border-4 border-blue-1000': 'md:hover:scale-105 md:hover:border'}`}
             />
           ))}
         </div>

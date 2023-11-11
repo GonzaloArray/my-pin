@@ -12,7 +12,8 @@ export default {
       },
       borderColor: {
         'black-100': '#00000058',
-        'white-100': '#ffffff28'
+        'white-100': '#ffffff28',
+        'blue-1000': '#00ffea'
       }
     },
   },

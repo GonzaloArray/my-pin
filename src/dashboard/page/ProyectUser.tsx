@@ -6,9 +6,7 @@ export const ProyectUser = () => {
   return (
     <ButtonProvider>
       <div className="flex flex-col gap-4 md:gap-8">
-
         <Form/>
-        {/* Section Component */}
         <ProyectCards />
       </div>
     </ButtonProvider>
