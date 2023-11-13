@@ -37,13 +37,13 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     title: "Title Example Melty",
     description: "Description Example Melty",
     icon: {
-      icon: null,
-      name: "JS",
+      name: "js",
       id: "",
     },
   });
 
   const handleSelectStackIconCard = (stack: StackItem) => {
+    console.log(stack)
     setSelectedCard({
       ...selectedCard,
       icon: stack,
@@ -66,7 +66,6 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        icon: null,
         name: "JS",
         id: "",
       },
@@ -87,7 +86,6 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        icon: null,
         name: "JS",
         id: "",
       },
@@ -115,14 +113,13 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const handleDeleteProyect = () => {
     const filterProyect = cards.filter(card => card.id !== selectedCard.id)
     console.log(filterProyect);
-    
+
     setCards(filterProyect);
 
     setSelectedCard({
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        icon: null,
         name: "JS",
         id: "",
       },

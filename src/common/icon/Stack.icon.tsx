@@ -17,7 +17,7 @@ export const Stack = {
       </svg>
 
     ),
-    name: 'Figma',
+    name: 'figma',
     id: crypto.randomUUID()
   },
   js: {
@@ -34,7 +34,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'JS',
+    name: 'js',
     id: crypto.randomUUID()
   },
   react: {
@@ -50,7 +50,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'React',
+    name: 'react',
     id: crypto.randomUUID()
   },
   vue: {
@@ -68,7 +68,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'Vue',
+    name: 'vue',
     id: crypto.randomUUID()
   },
   angular: {
@@ -86,7 +86,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'Angular',
+    name: 'angular',
     id: crypto.randomUUID()
   },
   vitest: {
@@ -104,7 +104,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'Vitest',
+    name: 'vitest',
     id: crypto.randomUUID()
   },
   astro: {
@@ -121,7 +121,7 @@ export const Stack = {
         </defs>
       </svg>
     ),
-    name: 'Astro',
+    name: 'astro',
     id: crypto.randomUUID()
   },
 }

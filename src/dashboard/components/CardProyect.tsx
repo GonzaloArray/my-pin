@@ -2,17 +2,32 @@ import React from "react";
 import { JSFigure } from "../../common/icon/Figure.icon"
 import { BgCard } from "../../icons/BgCard.icon"
 import { Github } from "../../icons/Github.icon"
+import { Stack } from "../../common/icon/Stack.icon";
+
+interface IconType {
+  icon: React.ReactElement;
+  name: string;
+  id: string;
+}
 
 interface Props {
   title: string;
   description: string;
   id: string;
   className: string;
-  icon: React.ReactElement;
+  icon: string;
   click: (id: string) => void;
 }
 
-export const CardProyect = ({ title, description, className,id, icon, click }: Props) => {
+export const CardProyect = ({ title, description, className, id, icon = "", click }: Props) => {
+  const selectedIcon = (Stack as Record<string, IconType>)[icon];
+
+  if (!selectedIcon) {
+    return null;
+  }
+
+  const { icon: IconElement } = selectedIcon;
+
   return (
     <div
       onClick={() => click(id)}
@@ -31,7 +46,7 @@ export const CardProyect = ({ title, description, className,id, icon, click }: P
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
         <JSFigure>
-          {icon && React.cloneElement(icon, {
+          {icon && React.cloneElement(IconElement, {
             width: "190",
             height: "190",
           })}

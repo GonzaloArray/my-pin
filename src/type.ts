@@ -6,9 +6,12 @@ export interface Skill{
 }
 
 export interface StackItem {
-  icon: React.ReactElement | null;
   name: string;
   id: string;
+}
+
+export interface Stack extends StackItem{
+  icon: React.ReactElement
 }
 
 
@@ -24,4 +27,19 @@ export interface ButtonStates {
   add: ReactNode;
   edit: ReactNode;
   delete?: ReactNode;
+}
+
+export type StackItemType = {
+  icon: React.ReactElement;
+  name: string;
+  id: string;
+};
+
+export type StackType = {
+  [key: string]: StackItemType;
+};
+
+export interface Props {
+  icon: string;
+  stack: StackType;
 }

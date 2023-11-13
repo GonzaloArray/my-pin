@@ -1,6 +1,6 @@
 import React from "react"
 import { Stack } from "../../common/icon/Stack.icon"
-import { StackItem } from "../../type";
+import { Stack as StackV, StackItem } from "../../type";
 import Style from './SkillSection.module.css'
 
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const SkillSection = ({ selectStackIcon, icon }: Props) => {
 
-  const stackEntries = Object.entries(Stack) as [string, StackItem][];
+  const stackEntries = Object.entries(Stack) as [string, StackV][];
 
   return (
     <div className={`animate__animated transition-all animate__fadeIn`}>
@@ -22,7 +22,7 @@ export const SkillSection = ({ selectStackIcon, icon }: Props) => {
           <button
             type="button"
             key={key}
-            onClick={() => selectStackIcon(stack)}
+            onClick={() => selectStackIcon({name: stack.name, id: stack.id})}
             className={`hover:scale-125 transition-all relative ${icon === stack.name ? `${Style.activeSkill}` : ''}`}
           >
             {stack?.icon && React.cloneElement(stack.icon, {
