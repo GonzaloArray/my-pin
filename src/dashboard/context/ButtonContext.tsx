@@ -66,7 +66,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        name: "JS",
+        name: "js",
         id: "",
       },
     });
@@ -86,7 +86,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        name: "JS",
+        name: "js",
         id: "",
       },
     });
@@ -120,7 +120,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       title: "Title Example Melty",
       description: "Description Example Melty",
       icon: {
-        name: "JS",
+        name: "js",
         id: "",
       },
     });
