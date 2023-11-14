@@ -43,3 +43,15 @@ export interface Props {
   icon: string;
   stack: StackType;
 }
+
+export interface User{
+  name: string;
+  email: string;
+  uid: string;
+  photo: string;
+}
+
+export interface UserDetails extends User {
+  title: string;
+  description: string;
+}

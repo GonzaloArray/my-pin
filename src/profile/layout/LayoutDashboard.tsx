@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
-import { UserDescription } from "../components/UserDescription";
-import { useState } from "react";
-import Modal from "../components/Modal";
-import { Footer } from "../components/Footer";
+import { Outlet, useParams } from "react-router-dom";
+import { UserDescription } from "../../components/UserDescription";
+import { useEffect, useState } from "react";
+import Modal from "../../components/Modal";
+import { Footer } from "../../components/Footer";
+import { getFirebaseData } from "../../service/firebaseAction";
+import { useInfoProfileStore } from "../../store/infoProfileStore";
 
 export const LayoutDashboard = () => {
   const [toggle, setToggle] = useState(false);
   const [modalCv, setModalCv] = useState(false);
   const [modalFormData, setModaFormData] = useState(false);
+  const {id} = useParams()
+  
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -20,6 +24,27 @@ export const LayoutDashboard = () => {
   const handleModalFormData = () => {
     setModaFormData(!modalFormData);
   };
+
+  const {getUser} = useInfoProfileStore( state => state)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const data = await getFirebaseData(id, "users");
+          if (data) {
+            getUser(data);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    return () => {
+      fetchData()
+    }
+  }, [id, getUser])
 
   return (
     <div className="relative">

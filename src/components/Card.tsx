@@ -1,6 +1,6 @@
 import { JSFigure } from "../common/icon/Figure.icon";
-import { BgCard } from "../icons/BgCard.icon";
-import { Github } from "../icons/Github.icon";
+import { BgCard } from "../common/icons/BgCard.icon";
+import { Github } from "../common/icons/Github.icon";
 
 interface Props {
   title: string;

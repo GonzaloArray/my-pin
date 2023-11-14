@@ -1,10 +1,10 @@
 import Style from "./LinkNetworking.module.css";
-import { GithubPartial } from "../icons/GithubPartial";
-import { Instagram } from "../icons/Instagram.icon";
-import { Linkdnd } from "../icons/Linkdnd.icon";
+import { GithubPartial } from "../common/icons/GithubPartial";
+import { Instagram } from "../common/icons/Instagram.icon";
+import { Linkdnd } from "../common/icons/Linkdnd.icon";
 
 import { LinkAction } from "./LinkAction";
-import { KeyBoard } from "../icons/KeyBoard";
+import { KeyBoard } from "../common/icons/KeyBoard";
 
 interface Props {
   toggle: boolean

@@ -1,4 +1,4 @@
-import { GithubPartial } from '../../icons/GithubPartial'
+import { GithubPartial } from '../../common/icons/GithubPartial'
 import './TicketProyect.css'
 
 export const TicketProyect = () => {

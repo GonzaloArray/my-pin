@@ -1,4 +1,4 @@
-import { Arrow } from "../icons/Arrow.icon";
+import { Arrow } from "../common/icons/Arrow.icon";
 import { Avatar } from "./Avatar";
 import { LinkNetworking } from "./LinkNetworking";
 import { PopStatusUser } from "./PopStatusUser";
@@ -6,6 +6,7 @@ import { SetupUser } from "./SetupUser";
 import Style from "./UserDescription.module.css";
 import Status from "../assets/status.png"
 import { BannerUser } from "./BannerUser";
+import { useInfoProfileStore } from "../store/infoProfileStore";
 
 interface Props {
   toggle: boolean;
@@ -21,6 +22,9 @@ export const UserDescription = ({
   setToggle,
   setModalFormData,
 }: Props) => {
+
+  const user = useInfoProfileStore(state => state.user)
+
   return (
     <>
       <button
@@ -38,11 +42,9 @@ export const UserDescription = ({
           <PopStatusUser/>
           <Avatar />
         </div>
-        <h1 className="font-bold">Hi there👋, I'm Gonzalo.</h1>
+        <h1 className="font-bold line-clamp-1">{user.title}</h1>
         <p className="tracking-wide leading-7">
-          I’m from Buenos Aires, Argentina. I’m working with JS since 2022. My
-          goal is to learn new technologies and become a FrontEnd Architect. I
-          code in JavaScript, React, Sass
+          {user.description}
         </p>
         <div className="flex gap-2">
           <button

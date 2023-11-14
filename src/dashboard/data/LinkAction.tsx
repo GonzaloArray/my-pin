@@ -1,16 +1,16 @@
 export const LinkAction = [
   {
-    link: '/dashboard',
+    link: '',
     id: crypto.randomUUID(),
     name: 'Profile'
   },
   {
-    link: '/dashboard/proyect',
+    link: 'proyect',
     id: crypto.randomUUID(),
     name: 'Proyects'
   },
   {
-    link: '/dashboard/skills',
+    link: 'skills',
     id: crypto.randomUUID(),
     name: 'Skills'
   }

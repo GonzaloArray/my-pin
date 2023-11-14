@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Card } from "../components/Card";
-import { SpacingContent } from "../components/SpacingContent";
-import { Stack } from "../components/Stack";
-import { Title } from "../components/Title";
-import { Dashboard } from "../icons/Dashboard.icon";
-import { StepIntroUser } from "../components/StepIntroUser";
+import { Card } from "../../components/Card";
+import { SpacingContent } from "../../components/SpacingContent";
+import { Stack } from "../../components/Stack";
+import { Title } from "../../components/Title";
+import { Dashboard } from "../../common/icons/Dashboard.icon";
+import { StepIntroUser } from "../../components/StepIntroUser";
 import { Guide } from "../data/StepGuideIntroduction";
-import { GuideCaptureButtonContent, GuideCaptureContent, GuideCaptureSettingContent } from "../components/GuideCaptureContent";
+import { GuideCaptureButtonContent, GuideCaptureContent, GuideCaptureSettingContent } from "../../components/GuideCaptureContent";
 import { saveConfigToLocalStorage } from "../helpers/saveConfigToLocalStorage";
 
 export const Proyects = () => {

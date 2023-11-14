@@ -2,7 +2,7 @@ import { useState } from "react";
 import Profile from "../assets/profile.jpeg";
 import QrPng from "../assets/qr.png";
 import Style from "./Avatar.module.css";
-import { Qr } from "../icons/Qr.icon";
+import { Qr } from "../common/icons/Qr.icon";
 
 
 export const Avatar = () => {
