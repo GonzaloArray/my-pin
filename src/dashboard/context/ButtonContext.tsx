@@ -1,5 +1,9 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { ButtonStates, Card, StackItem } from '../../type';
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { ButtonStates, Card, StackItem } from "../../type";
+import {
+  sendFirebaseData,
+  updateFirebaseData,
+} from "../../service/firebaseAction";
 
 export interface ButtonContextProps {
   activeSectionSkill: boolean;
@@ -12,23 +16,27 @@ export interface ButtonContextProps {
   handleNotActiveEditCard: () => void;
   handleSelectStackIconCard: (stack: StackItem) => void;
   handleEditProyect: (card: Card) => void;
-  handleUpdateProyect: (title: string, description: string) => void;
+  handleUpdateProyect: (id: string, title: string, description: string) => void;
   handleDeleteProyect: () => void;
 }
 
-export const ButtonContext = createContext<ButtonContextProps | undefined>(undefined);
+export const ButtonContext = createContext<ButtonContextProps | undefined>(
+  undefined
+);
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useButtonContext = () => {
   const context = useContext(ButtonContext);
   if (!context) {
-    throw new Error('useButtonContext must be used within a ButtonProvider');
+    throw new Error("useButtonContext must be used within a ButtonProvider");
   }
   return context;
 };
 
-export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [buttonState, setButtonState] = useState<keyof ButtonStates>('normal');
+export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [buttonState, setButtonState] = useState<keyof ButtonStates>("normal");
   const [activeSectionSkill, setActiveSectionSkill] = useState(false);
   const [activeEditProyect, setActiveEditProyect] = useState(true);
   const [cards, setCards] = useState<Card[]>([]);
@@ -43,14 +51,25 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   });
 
   const handleSelectStackIconCard = (stack: StackItem) => {
-    console.log(stack)
+    console.log(stack);
     setSelectedCard({
       ...selectedCard,
       icon: stack,
     });
   };
 
-  const handleAddNewProyect = (title: string, description: string) => {
+  const handleAddNewProyect = (
+    title: string,
+    description: string
+  ) => {
+    const id = crypto.randomUUID();
+
+    sendFirebaseData(id, "proyects", {
+      ...selectedCard,
+      title: title,
+      description: description,
+      id: id,
+    });
 
     setCards([
       ...cards,
@@ -71,14 +90,28 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       },
     });
 
-    setButtonState('normal');
-    setActiveEditProyect(true)
+    setButtonState("normal");
+    setActiveEditProyect(true);
     handleNotActiveEditCard();
   };
 
-  const handleUpdateProyect = (title: string, description: string) => {
+  const handleUpdateProyect = async(
+    id: string,
+    title: string,
+    description: string
+  ) => {
+    console.log(id)
+    await updateFirebaseData(id, "proyects", {
+      ...selectedCard,
+      title: title,
+      description: description,
+    });
 
-    const findProyect = cards.map(card => card.id === selectedCard.id ? { ...selectedCard, title: title, description: description }: card)
+    const findProyect = cards.map((card) =>
+      card.id === selectedCard.id
+        ? { ...selectedCard, title: title, description: description }
+        : card
+    );
 
     setCards(findProyect);
 
@@ -91,27 +124,27 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       },
     });
 
-    setButtonState('normal');
-    setActiveEditProyect(true)
+    setButtonState("normal");
+    setActiveEditProyect(true);
     handleNotActiveEditCard();
   };
 
   const handleEditProyect = (card: Card) => {
-    setSelectedCard({ ...card })
-    setActiveEditProyect(false)
-  }
+    setSelectedCard({ ...card });
+    setActiveEditProyect(false);
+  };
 
   const handleButtonClick = (newState: keyof ButtonStates) => {
     setButtonState(newState);
-    setActiveSectionSkill(!activeSectionSkill)
+    setActiveSectionSkill(!activeSectionSkill);
   };
 
   const handleNotActiveEditCard = () => {
-    setActiveSectionSkill(false)
+    setActiveSectionSkill(false);
   };
 
   const handleDeleteProyect = () => {
-    const filterProyect = cards.filter(card => card.id !== selectedCard.id)
+    const filterProyect = cards.filter((card) => card.id !== selectedCard.id);
     console.log(filterProyect);
 
     setCards(filterProyect);
@@ -125,10 +158,10 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       },
     });
 
-    setButtonState('normal');
-    setActiveEditProyect(true)
+    setButtonState("normal");
+    setActiveEditProyect(true);
     handleNotActiveEditCard();
-  }
+  };
 
   const value: ButtonContextProps = {
     activeSectionSkill,
@@ -142,8 +175,10 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     handleSelectStackIconCard,
     handleEditProyect,
     handleUpdateProyect,
-    handleDeleteProyect
+    handleDeleteProyect,
   };
 
-  return <ButtonContext.Provider value={value}>{children}</ButtonContext.Provider>;
+  return (
+    <ButtonContext.Provider value={value}>{children}</ButtonContext.Provider>
+  );
 };

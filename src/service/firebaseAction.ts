@@ -1,8 +1,11 @@
 import { db } from "./firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getFirebaseData = async (id: string, document: string): Promise<any | null> => {
+export const getFirebaseData = async (
+  id: string,
+  document: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<any | null> => {
   const docRef = doc(db, document, id);
   const docSnap = await getDoc(docRef);
 
@@ -14,8 +17,21 @@ export const getFirebaseData = async (id: string, document: string): Promise<any
   }
 };
 
+export const sendFirebaseData = async (
+  id: string,
+  document: string,
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const sendFirebaseData = async (id: string, document: string, data: any): Promise<void> => {
+  data: any
+): Promise<void> => {
   await setDoc(doc(db, document, id), data);
 };
 
+export const updateFirebaseData = async (
+  id: string,
+  document: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any
+): Promise<void> => {
+  const userRef = doc(db, document, id);
+  await updateDoc(userRef, data);
+};

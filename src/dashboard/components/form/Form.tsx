@@ -6,9 +6,11 @@ import { CardContent } from '../CardContent'
 import { ControlActionCard } from '../ControlActionCard'
 import { SkillSection } from '../SkillSection'
 import { BgProyect } from '../BgProyect'
+import { useParams } from 'react-router-dom'
 
 export const Form = () => {
-const {activeSectionSkill, buttonState, selectedCard, handleSelectStackIconCard, handleAddNewProyect, handleUpdateProyect} =useButtonContext()
+  const {id} = useParams()
+  const { activeSectionSkill, buttonState, selectedCard, handleSelectStackIconCard, handleAddNewProyect, handleUpdateProyect } = useButtonContext()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -16,11 +18,11 @@ const {activeSectionSkill, buttonState, selectedCard, handleSelectStackIconCard,
 
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
-
+    if (!selectedCard.id) return
     if (buttonState === 'add') {
       handleAddNewProyect(title, description)
-    }else if (buttonState === 'edit') {
-      handleUpdateProyect(title, description)
+    } else if (buttonState === 'edit') {
+      handleUpdateProyect(selectedCard.id, title, description)
     }
 
   };
@@ -49,9 +51,9 @@ const {activeSectionSkill, buttonState, selectedCard, handleSelectStackIconCard,
         <ControlActionCard />
       </div>
       <SkillSection
-          icon={selectedCard.icon?.name ?? ""}
-          selectStackIcon={handleSelectStackIconCard}
-        />
+        icon={selectedCard.icon?.name ?? ""}
+        selectStackIcon={handleSelectStackIconCard}
+      />
     </form>
   )
 }
