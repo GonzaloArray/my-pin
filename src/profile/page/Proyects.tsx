@@ -16,6 +16,8 @@ import { AlertInformation } from "../../common/components/Alert";
 export const Proyects = () => {
   const { id } = useParams()
   const [cards, setCards] = useState<CardDetails[]>([])
+  const [skills, setSkills] = useState([])
+  const [learning, setLearning] = useState([])
   const [status, setStatus] = useState(() => {
     const storedStatus = localStorage.getItem('status');
     return storedStatus ? parseInt(storedStatus, 10) : 1;
@@ -29,15 +31,37 @@ export const Proyects = () => {
   useEffect(() => {
     const getDataCardsFirebase = async () => {
       if (!id) return
-      console.log(id)
       const data = await getFirebaseData(id, 'proyects')
-      console.log(data)
       setCards(data.cards)
     }
     return () => {
       getDataCardsFirebase()
     }
   }, [id])
+
+  useEffect(() => {
+    const getDataSkillsFirebase = async () => {
+      if (!id) return
+      const data = await getFirebaseData(id, 'skills')
+      setSkills(data.skill)
+    }
+    return () => {
+      getDataSkillsFirebase()
+    }
+  }, [id])
+
+  useEffect(() => {
+    const getDataSkillsLearningFirebase = async () => {
+      if (!id) return
+      const data = await getFirebaseData(id, 'learning')
+      setLearning(data.skill)
+    }
+
+    return () => {
+      getDataSkillsLearningFirebase()
+    }
+  }, [id])
+  
 
   const handleNextGuides = () => {
     if (Guide.length <= status) {
@@ -158,11 +182,11 @@ export const Proyects = () => {
       </SpacingContent>
       <Title title="Skills." />
       <SpacingContent>
-        <Stack />
+        <Stack skills={skills}/>
       </SpacingContent>
       <Title title="Learning." />
       <SpacingContent>
-        <Stack />
+        <Stack skills={learning}/>
       </SpacingContent>
       {
         !removeGuide &&
