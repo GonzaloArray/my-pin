@@ -1,9 +1,13 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { ButtonStates, Card, StackItem } from "../../type";
 import {
+  getFirebaseData,
+  sendArrayFirebaseData,
   sendFirebaseData,
-  updateFirebaseData,
+  updateArrayFirebaseData,
 } from "../../service/firebaseAction";
+import { arrayUnion } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 export interface ButtonContextProps {
   activeSectionSkill: boolean;
@@ -11,12 +15,12 @@ export interface ButtonContextProps {
   cards: Card[];
   selectedCard: Card;
   activeEditProyect: boolean;
-  handleAddNewProyect: (title: string, description: string) => void;
+  handleAddNewProyect: (id: string, title: string, description: string) => void;
   handleButtonClick: (newState: keyof ButtonStates) => void;
   handleNotActiveEditCard: () => void;
   handleSelectStackIconCard: (stack: StackItem) => void;
   handleEditProyect: (card: Card) => void;
-  handleUpdateProyect: (id: string, title: string, description: string) => void;
+  handleUpdateProyect: (idUser:string, title: string, description: string) => void;
   handleDeleteProyect: () => void;
 }
 
@@ -40,6 +44,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const [activeSectionSkill, setActiveSectionSkill] = useState(false);
   const [activeEditProyect, setActiveEditProyect] = useState(true);
   const [cards, setCards] = useState<Card[]>([]);
+  const {id} = useParams()
 
   const [selectedCard, setSelectedCard] = useState<Card>({
     title: "Title Example Melty",
@@ -50,6 +55,17 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
     },
   });
 
+  useEffect(() => {
+    const getCardFirebase = async() => {
+      if (!id) return
+      const data = await getFirebaseData(id, 'proyects')
+      setCards(data.cards)
+    }
+    return () => {
+      getCardFirebase()
+    }
+  }, [id])
+
   const handleSelectStackIconCard = (stack: StackItem) => {
     console.log(stack);
     setSelectedCard({
@@ -59,16 +75,18 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const handleAddNewProyect = (
+    idUser: string,
     title: string,
     description: string
   ) => {
-    const id = crypto.randomUUID();
-
-    sendFirebaseData(id, "proyects", {
-      ...selectedCard,
-      title: title,
-      description: description,
-      id: id,
+    const id = crypto.randomUUID()
+    sendArrayFirebaseData(idUser, "proyects", {
+      cards: arrayUnion( {
+        ...selectedCard,
+        title: title,
+        description: description,
+        id: id
+      })
     });
 
     setCards([
@@ -96,16 +114,11 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const handleUpdateProyect = async(
-    id: string,
+    idUser: string,
     title: string,
     description: string
   ) => {
-    console.log(id)
-    await updateFirebaseData(id, "proyects", {
-      ...selectedCard,
-      title: title,
-      description: description,
-    });
+    updateArrayFirebaseData(idUser, 'proyects', { ...selectedCard, title: title, description: description })
 
     const findProyect = cards.map((card) =>
       card.id === selectedCard.id
@@ -145,8 +158,8 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
 
   const handleDeleteProyect = () => {
     const filterProyect = cards.filter((card) => card.id !== selectedCard.id);
-    console.log(filterProyect);
-
+    if (!id) return
+    sendFirebaseData(id, 'proyects', {cards: filterProyect})
     setCards(filterProyect);
 
     setSelectedCard({
@@ -157,6 +170,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
         id: "",
       },
     });
+
 
     setButtonState("normal");
     setActiveEditProyect(true);

@@ -15,14 +15,14 @@ export const Form = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
-    if (!selectedCard.id) return
+    if (!id) return
     if (buttonState === 'add') {
-      handleAddNewProyect(title, description)
+      handleAddNewProyect(id, title, description)
     } else if (buttonState === 'edit') {
-      handleUpdateProyect(selectedCard.id, title, description)
+      if (!selectedCard.id) return
+      handleUpdateProyect(id, title, description)
     }
 
   };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../../components/Card";
 import { SpacingContent } from "../../components/SpacingContent";
 import { Stack } from "../../components/Stack";
@@ -8,8 +8,14 @@ import { StepIntroUser } from "../../components/StepIntroUser";
 import { Guide } from "../data/StepGuideIntroduction";
 import { GuideCaptureButtonContent, GuideCaptureContent, GuideCaptureSettingContent } from "../../components/GuideCaptureContent";
 import { saveConfigToLocalStorage } from "../helpers/saveConfigToLocalStorage";
+import { getFirebaseData } from "../../service/firebaseAction";
+import { Card as CardDetails } from "../../type";
+import { useParams } from "react-router-dom";
+import { AlertInformation } from "../../common/components/Alert";
 
 export const Proyects = () => {
+  const { id } = useParams()
+  const [cards, setCards] = useState<CardDetails[]>([])
   const [status, setStatus] = useState(() => {
     const storedStatus = localStorage.getItem('status');
     return storedStatus ? parseInt(storedStatus, 10) : 1;
@@ -19,6 +25,19 @@ export const Proyects = () => {
     const storedRemoveGuide = localStorage.getItem('removeGuide');
     return storedRemoveGuide ? JSON.parse(storedRemoveGuide) : false;
   });
+
+  useEffect(() => {
+    const getDataCardsFirebase = async () => {
+      if (!id) return
+      console.log(id)
+      const data = await getFirebaseData(id, 'proyects')
+      console.log(data)
+      setCards(data.cards)
+    }
+    return () => {
+      getDataCardsFirebase()
+    }
+  }, [id])
 
   const handleNextGuides = () => {
     if (Guide.length <= status) {
@@ -121,46 +140,20 @@ export const Proyects = () => {
         <div
           className={`grid ${dashboard.xr} ${dashboard.sm} ${dashboard.md} ${dashboard.lg} ${dashboard.xl} gap-1 md:gap-4 box-border`}
         >
-          <Card
-            link="https://github.com/No-Country/c12-40-ft-react-agregarback.git"
-            title="Howdy"
-            description="Website"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/challengue-tecnico-2.git"
-            title="Challengue 2"
-            description="Challengue"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/challengue-midu-dev-1.git"
-            title="Challengue 1"
-            description="Challengue"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/calculator.git"
-            title="Calculator UI and Functional"
-            description="Website"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/calculator.git"
-            title="Calculator UI and Functional"
-            description="Website"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/calculator.git"
-            title="Calculator UI and Functional"
-            description="Website"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/calculator.git"
-            title="Calculator UI and Functional"
-            description="Website"
-          />
-          <Card
-            link="https://github.com/GonzaloArray/calculator.git"
-            title="Calculator UI and Functional"
-            description="Website"
-          />
+          {
+            cards.length === 0 && <AlertInformation>No proyect yet</AlertInformation>
+          }
+          {
+            cards.map(card => (
+              <Card
+                icon={card.icon?.name ?? ''}
+                key={card.id}
+                link="https://github.com/No-Country/c12-40-ft-react-agregarback.git"
+                title={card.title}
+                description={card.description}
+              />
+            ))
+          }
         </div>
       </SpacingContent>
       <Title title="Skills." />
