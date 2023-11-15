@@ -11,7 +11,6 @@ export const LayoutDashboard = () => {
   const [modalCv, setModalCv] = useState(false);
   const [modalFormData, setModaFormData] = useState(false);
   const {id} = useParams()
-  
 
   const handleToggle = () => {
     setToggle(!toggle);
