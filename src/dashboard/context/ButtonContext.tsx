@@ -68,7 +68,6 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   }, [id])
 
   const handleSelectStackIconCard = (stack: StackItem) => {
-    console.log(stack);
     setSelectedCard({
       ...selectedCard,
       icon: stack,

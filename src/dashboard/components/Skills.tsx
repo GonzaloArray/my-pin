@@ -3,21 +3,41 @@ import { SpacingContent } from '../../components/SpacingContent'
 import { AlertInformation } from '../../common/components/Alert'
 import { BadgeAction } from '../../components/BadgeAction'
 import { ButtonAddNewProyect } from './ButtonActionCrud'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { Skill } from '../../type'
 import { Backend, Frontend } from '../data/Skills'
 import Modal from '../../components/Modal'
+import { useParams } from 'react-router-dom'
+import { arrayUnion } from 'firebase/firestore'
+import { getFirebaseData, sendArrayFirebaseData, sendFirebaseData } from '../../service/firebaseAction'
 
 interface Props {
-  children: ReactNode
+  children: ReactNode,
+  name: string
 }
 
-export const Skills = ({children}: Props) => {
+export const Skills = ({ children, name }: Props) => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [modalSkill, setModalSkill] = useState(false);
 
-  const handleDelete = ({ id }: Skill) => {
-    const removeSkills = skills.filter((skill) => skill.id !== id);
+  const { id } = useParams()
+
+  useEffect(() => {
+    const getDataSkills = async() => {
+      if(!id)return
+      const data = await getFirebaseData(id, name)
+      setSkills(data.skill)
+    }
+
+    return () => {
+      getDataSkills()
+    }
+  }, [id, name])
+
+  const handleDelete = ({ id: idSkill }: Skill) => {
+    const removeSkills = skills.filter((skill) => skill.id !== idSkill);
+    if(!id) return
+    sendFirebaseData(id, name, {skill: removeSkills})
     setSkills(removeSkills);
   };
 
@@ -26,6 +46,10 @@ export const Skills = ({children}: Props) => {
   };
 
   const handleAddSkill = (skill: Skill) => {
+    if (!id) return
+    sendArrayFirebaseData(id, name, {
+      skill: arrayUnion(skill)
+    })
     setSkills([...skills, skill])
   }
 

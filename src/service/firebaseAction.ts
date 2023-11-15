@@ -43,7 +43,6 @@ export const sendArrayFirebaseData = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any
 ) => {
-  console.log('entre')
   const userDocRef = doc(db, document, id);
 
   const userDocSnapshot = await getDoc(userDocRef);

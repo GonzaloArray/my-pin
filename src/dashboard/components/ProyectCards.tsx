@@ -31,7 +31,7 @@ export const ProyectCards = () => {
               title={card.title}
               description={card.description}
               icon={card?.icon?.name ?? ''}
-              className={`cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border h-[130px] md:h-[180px] xl:h-[180px] flex flex-col justify-center items-center overflow-hidden ${card.id === selectedCard.id ? 'border-4 border-blue-1000': 'md:hover:scale-105 md:hover:border'}`}
+              className={`cursor-pointer bg-slate-700 rounded-lg shadow-lg relative transition-all box-border h-[130px] md:h-[180px] xl:h-[250px] flex flex-col justify-center items-center overflow-hidden ${card.id === selectedCard.id ? 'border-4 border-blue-1000': 'md:hover:border'}`}
             />
           ))}
         </div>
