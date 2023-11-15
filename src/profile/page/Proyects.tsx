@@ -148,7 +148,7 @@ export const Proyects = () => {
               <Card
                 icon={card.icon?.name ?? ''}
                 key={card.id}
-                link="https://github.com/No-Country/c12-40-ft-react-agregarback.git"
+                link={card.url}
                 title={card.title}
                 description={card.description}
               />

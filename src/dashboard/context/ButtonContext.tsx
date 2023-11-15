@@ -15,12 +15,12 @@ export interface ButtonContextProps {
   cards: Card[];
   selectedCard: Card;
   activeEditProyect: boolean;
-  handleAddNewProyect: (id: string, title: string, description: string) => void;
+  handleAddNewProyect: (id: string, title: string, description: string, url: string) => void;
+  handleUpdateProyect: (idUser:string, title: string, description: string, url: string) => void;
   handleButtonClick: (newState: keyof ButtonStates) => void;
   handleNotActiveEditCard: () => void;
   handleSelectStackIconCard: (stack: StackItem) => void;
   handleEditProyect: (card: Card) => void;
-  handleUpdateProyect: (idUser:string, title: string, description: string) => void;
   handleDeleteProyect: () => void;
 }
 
@@ -49,6 +49,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const [selectedCard, setSelectedCard] = useState<Card>({
     title: "Title Example Melty",
     description: "Description Example Melty",
+    url: '',
     icon: {
       name: "js",
       id: "",
@@ -77,7 +78,8 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const handleAddNewProyect = (
     idUser: string,
     title: string,
-    description: string
+    description: string,
+    url: string
   ) => {
     const id = crypto.randomUUID()
     sendArrayFirebaseData(idUser, "proyects", {
@@ -85,6 +87,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
         ...selectedCard,
         title: title,
         description: description,
+        url: url,
         id: id
       })
     });
@@ -95,6 +98,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
         ...selectedCard,
         title: title,
         description: description,
+        url: url,
         id: crypto.randomUUID(),
       },
     ]);
@@ -102,6 +106,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
     setSelectedCard({
       title: "Title Example Melty",
       description: "Description Example Melty",
+      url: '',
       icon: {
         name: "js",
         id: "",
@@ -116,13 +121,14 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const handleUpdateProyect = async(
     idUser: string,
     title: string,
-    description: string
+    description: string,
+    url: string,
   ) => {
-    updateArrayFirebaseData(idUser, 'proyects', { ...selectedCard, title: title, description: description })
+    updateArrayFirebaseData(idUser, 'proyects', { ...selectedCard, title: title, description: description, url: url })
 
     const findProyect = cards.map((card) =>
       card.id === selectedCard.id
-        ? { ...selectedCard, title: title, description: description }
+        ? { ...selectedCard, title: title, description: description, url: url }
         : card
     );
 
@@ -131,6 +137,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
     setSelectedCard({
       title: "Title Example Melty",
       description: "Description Example Melty",
+      url: '',
       icon: {
         name: "js",
         id: "",
@@ -165,6 +172,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
     setSelectedCard({
       title: "Title Example Melty",
       description: "Description Example Melty",
+      url: '',
       icon: {
         name: "js",
         id: "",

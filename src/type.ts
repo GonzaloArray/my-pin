@@ -16,6 +16,7 @@ export interface Stack extends StackItem{
 
 
 export interface Card {
+  url: string;
   title: string;
   description: string;
   icon: StackItem | null;

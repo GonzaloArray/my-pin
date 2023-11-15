@@ -15,14 +15,15 @@ export const Form = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
+    const url = formData.get("url") as string;
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     if (!id) return
     if (buttonState === 'add') {
-      handleAddNewProyect(id, title, description)
+      handleAddNewProyect(id, title, description, url)
     } else if (buttonState === 'edit') {
       if (!selectedCard.id) return
-      handleUpdateProyect(id, title, description)
+      handleUpdateProyect(id, title, description, url)
     }
 
   };
@@ -37,6 +38,7 @@ export const Form = () => {
       >
         {activeSectionSkill ? (
           <FormCard
+            url={selectedCard.url}
             title={selectedCard.title}
             description={selectedCard.description}
           />
