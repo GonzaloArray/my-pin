@@ -6,6 +6,7 @@ import { useProfileStore } from "../../store/authProfileStore";
 import { useInfoProfileStore } from "../../store/infoProfileStore";
 import { onLogout } from "../../service/firebaseAuth";
 
+
 export const Setup = () => {
   const { id } = useParams();
   const userAuth = useProfileStore((state) => state.user);
@@ -22,7 +23,7 @@ export const Setup = () => {
       <div className="flex justify-between gap-10 items-center">
         <Title title="Setup." />
         <Link
-          to="/"
+          to={`/${id}`}
           className="text-lime-500 md:text-white md:text-4xl transition-colors hover:text-lime-400"
         >
           - Go Back Profile -
@@ -35,7 +36,10 @@ export const Setup = () => {
             <SpacingContent>
               <div className="mt-5">
                 {id === userAuth.uid && (
-                  <button onClick={handleLogout} className="bg-red-500 w-[80px] h-[42px] rounded-lg border border-white text-sm" type="button">Log out</button>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <button onClick={handleLogout} className="bg-red-500 w-[80px] h-[42px] rounded-lg border border-white text-sm" type="button">Log out</button>
+                    <Link to={`/dashboard/${userAuth.uid}`} className="bg-gray-500 w-[130px] h-[42px] rounded-lg border border-white text-sm flex items-center justify-center p-1">Go to profile</Link>
+                  </div>
                 )}
                 {userAuth.uid === "" && (
                   <Link
