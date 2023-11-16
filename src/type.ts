@@ -56,3 +56,9 @@ export interface UserDetails extends User {
   title: string;
   description: string;
 }
+
+// Resume
+export interface Resume {
+  english: string;
+  spanish: string;
+}
