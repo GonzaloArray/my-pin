@@ -2,10 +2,13 @@ import { useState } from "react";
 import Profile from "../assets/profile.jpeg";
 import QrPng from "../assets/qr.png";
 import Style from "./Avatar.module.css";
-import { Qr } from "../icons/Qr.icon";
+import { Qr } from "../common/icons/Qr.icon";
 
+interface Props {
+  banner: string
+}
 
-export const Avatar = () => {
+export const Avatar = ({banner}: Props) => {
   const [qr, setQr] = useState(true);
 
   return (
@@ -21,7 +24,7 @@ export const Avatar = () => {
         {qr ? (
           <img
             className="rounded-full object-contain animate__animated animate__fadeIn"
-            src={Profile}
+            src={banner ?? Profile}
             alt="Javier Gonzalo Arrayaran"
           />
         ) : (

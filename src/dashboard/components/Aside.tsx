@@ -1,4 +1,5 @@
-import { Arrow } from "../../icons/Arrow.icon"
+import { Arrow } from "../../common/icons/Arrow.icon"
+import { useProfileStore } from "../../store/authProfileStore";
 import { LinkAction } from "../data/LinkAction"
 import { LinkActionAside } from "./LinkActionAside"
 
@@ -8,6 +9,9 @@ interface Props {
 }
 
 export const Aside = ({toggle, setToggle}: Props) => {
+
+  const user = useProfileStore(state=> state.user)
+
   return (
     <aside className={`w-[96%] md:w-[300px] fixed top-[69px] bottom-0 border-r border-r-white-100 flex flex-col gap-3 p-5 ${toggle ? "" : "-left-[93%] md:-left-[274px] z-40"
   }`}>
@@ -21,7 +25,7 @@ export const Aside = ({toggle, setToggle}: Props) => {
       </button>
       {
         LinkAction.map((link, i) => (
-          <LinkActionAside key={i} link={link.link}>
+          <LinkActionAside key={i} link={`/dashboard/${user.uid}/${link.link}`}>
             <span>{link.name}</span>
           </LinkActionAside>
         ))

@@ -5,10 +5,10 @@ export const SkillsUser = () => {
 
   return (
     <div className="flex flex-col gap-10">
-      <Skills>
+      <Skills name='skills'>
         <Title title="Skills."/>
       </Skills>
-      <Skills>
+      <Skills name='learning'>
         <Title title="Learning."/>
       </Skills>
     </div>

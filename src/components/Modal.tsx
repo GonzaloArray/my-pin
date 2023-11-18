@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useRef } from "react";
-import { KeyBoard } from "../icons/KeyBoard";
+import { KeyBoard } from "../common/icons/KeyBoard";
 
 interface Props {
   modalCv: boolean;

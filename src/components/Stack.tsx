@@ -1,33 +1,20 @@
+import { Skill } from "../type"
 import { Badge } from "./Badge"
-
-export const Stack = () => {
+interface Props {
+  skills: Skill[]
+}
+export const Stack = ({ skills }: Props) => {
   return (
     <div>
       <div className="flex gap-4 mt-3 flex-wrap">
-        <Badge>
-          # React
-        </Badge>
-        <Badge>
-          # Next.js
-        </Badge>
-        <Badge>
-          # JavaScript
-        </Badge>
-        <Badge>
-          # TypeScript
-        </Badge>
-        <Badge>
-          # Firebase9
-        </Badge>
-        <Badge>
-          # Redux
-        </Badge>
-        <Badge>
-          # Zustand
-        </Badge>
-        <Badge>
-          # Tailwind
-        </Badge>
+
+        {
+          skills.map((skill) => (
+            <Badge key={skill.id}>
+              {skill.name}
+            </Badge>
+          ))
+        }
       </div>
     </div>
   )

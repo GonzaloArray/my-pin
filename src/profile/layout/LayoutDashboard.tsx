@@ -1,13 +1,21 @@
-import { Outlet } from "react-router-dom";
-import { UserDescription } from "../components/UserDescription";
-import { useState } from "react";
-import Modal from "../components/Modal";
-import { Footer } from "../components/Footer";
+import { Outlet, useParams } from "react-router-dom";
+import { UserDescription } from "../../components/UserDescription";
+import { useEffect, useState } from "react";
+import Modal from "../../components/Modal";
+import { Footer } from "../../components/Footer";
+import { getFirebaseData } from "../../service/firebaseAction";
+import { useInfoProfileStore } from "../../store/infoProfileStore";
+import { Resume } from "../../type";
 
 export const LayoutDashboard = () => {
   const [toggle, setToggle] = useState(false);
   const [modalCv, setModalCv] = useState(false);
   const [modalFormData, setModaFormData] = useState(false);
+  const [resumes, setResumes] = useState<Resume>({
+    english: "",
+    spanish: "",
+  });
+  const {id} = useParams()
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -20,6 +28,38 @@ export const LayoutDashboard = () => {
   const handleModalFormData = () => {
     setModaFormData(!modalFormData);
   };
+
+  const {getUser} = useInfoProfileStore( state => state)
+
+  useEffect(() => {
+    const getDataResume = async () => {
+      if(!id) return
+      const data = await getFirebaseData(id, "resume");
+      setResumes(data);
+    };
+    return () => {
+      getDataResume();
+    };
+  }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const data = await getFirebaseData(id, "users");
+          if (data) {
+            getUser(data);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    return () => {
+      fetchData()
+    }
+  }, [id, getUser])
 
   return (
     <div className="relative">
@@ -49,14 +89,14 @@ export const LayoutDashboard = () => {
             <div className="flex gap-8 justify-evenly flex-1 mt-5">
               <a
                 target="_blank"
-                href=""
+                href={`${resumes.spanish}`}
                 className="hover:bg-white-100 rounded-xl p-3 w-full text-center"
               >
                 In Spanish
               </a>
               <a
                 target="_blank"
-                href=""
+                href={`${resumes.english}`}
                 className="hover:bg-white-100 rounded-xl p-3 w-full text-center"
               >
                 In English

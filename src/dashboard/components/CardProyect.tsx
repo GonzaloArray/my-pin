@@ -1,17 +1,36 @@
+import React from "react";
 import { JSFigure } from "../../common/icon/Figure.icon"
-import { BgCard } from "../../icons/BgCard.icon"
-import { Github } from "../../icons/Github.icon"
+import { BgCard } from "../../common/icons/BgCard.icon"
+import { Github } from "../../common/icons/Github.icon"
+import { Stack } from "../../common/icon/Stack.icon";
+
+interface IconType {
+  icon: React.ReactElement;
+  name: string;
+  id: string;
+}
 
 interface Props {
   title: string;
   description: string;
-  id?: string;
-  className: string
+  id: string;
+  className: string;
+  icon: string;
+  click: (id: string) => void;
 }
 
-export const CardProyect = ({ title, description, className }: Props) => {
+export const CardProyect = ({ title, description, className, id, icon = "", click }: Props) => {
+  const selectedIcon = (Stack as Record<string, IconType>)[icon];
+
+  if (!selectedIcon) {
+    return null;
+  }
+
+  const { icon: IconElement } = selectedIcon;
+
   return (
     <div
+      onClick={() => click(id)}
       className={className}
     >
       <h2 className={`text-md md:text-2xl 2xl:text-3xl font-semibold text-lime-300 mt-4 line-clamp-1 md:line-clamp-2 text-center z-40`}>
@@ -26,7 +45,12 @@ export const CardProyect = ({ title, description, className }: Props) => {
         <BgCard />
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
-        <JSFigure/>
+        <JSFigure>
+          {icon && React.cloneElement(IconElement, {
+            width: "190",
+            height: "190",
+          })}
+        </JSFigure>
       </div>
     </div>
   )

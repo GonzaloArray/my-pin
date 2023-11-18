@@ -1,14 +1,32 @@
+import React from "react";
 import { JSFigure } from "../common/icon/Figure.icon";
-import { BgCard } from "../icons/BgCard.icon";
-import { Github } from "../icons/Github.icon";
+import { Stack } from "../common/icon/Stack.icon";
+import { BgCard } from "../common/icons/BgCard.icon";
+import { Github } from "../common/icons/Github.icon";
 
 interface Props {
   title: string;
   description: string;
   link: string;
+  icon: string;
 }
 
-export const Card = ({ title, description, link }: Props) => {
+interface IconType {
+  icon: React.ReactElement;
+  name: string;
+  id: string;
+}
+
+
+export const Card = ({ title, description, link, icon }: Props) => {
+  const selectedIcon = (Stack as Record<string, IconType>)[icon];
+
+  if (!selectedIcon) {
+    return null;
+  }
+
+  const { icon: IconElement } = selectedIcon;
+
   return (
     <a
       target="__blank"
@@ -31,7 +49,12 @@ export const Card = ({ title, description, link }: Props) => {
         <BgCard />
       </div>
       <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
-        <JSFigure />
+        <JSFigure>
+          {icon && React.cloneElement(IconElement, {
+            width: "190",
+            height: "190",
+          })}
+        </JSFigure>
       </div>
     </a>
   );
