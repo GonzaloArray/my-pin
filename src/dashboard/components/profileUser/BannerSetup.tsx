@@ -8,6 +8,7 @@ import { useProfileStore } from "../../../store/authProfileStore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getFirebaseData, sendFirebaseData } from "../../../service/firebaseAction";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 interface FormData {
   selectBanner: FileList;
@@ -64,6 +65,7 @@ export const BannerSetup: React.FC = () => {
           bannerURL: bannerDownloadURL || null,
           profileURL: profileDownloadURL || null,
         })
+        toast.success('Saved Successfully')
       }
     } catch (error) {
       console.log(error);

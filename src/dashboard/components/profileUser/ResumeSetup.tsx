@@ -9,6 +9,7 @@ import {
 } from "../../../service/firebaseAction";
 import { useEffect, useState } from "react";
 import { Resume } from "../../../type";
+import { toast } from "sonner";
 
 export type Inputs = {
   resumeSpanish: string;
@@ -66,6 +67,8 @@ export const ResumeSetup = () => {
       spanish: spanishResumeURL,
       english: englishResumeURL,
     });
+
+    toast.success('Saved Successfully')
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

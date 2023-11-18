@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Inputs } from '../../page/ProfileUser';
 import { sendFirebaseData } from '../../../service/firebaseAction';
 import { useProfileStore } from '../../../store/authProfileStore';
+import { toast } from 'sonner';
 
 export const ProfileSetup = () => {
   const user = useProfileStore((state) => state.user);
@@ -12,6 +13,7 @@ export const ProfileSetup = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await sendFirebaseData(user.uid, "users", { ...user, ...data });
+    toast.success('Saved Successfully')
   };
 
   return (
