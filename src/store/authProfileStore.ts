@@ -17,9 +17,10 @@ export const useProfileStore = create<State & Action>()((set) => ({
     email: '',
     uid: '',
     title: '',
-    description: ''
+    description: '',
+    job: '',
   },
-  getUser: async({title, description, uid, name, photo, email}) => {
+  getUser: async({title, job, description, uid, name, photo, email}) => {
     set(state => ({
       ...state,
       user: {
@@ -28,7 +29,8 @@ export const useProfileStore = create<State & Action>()((set) => ({
         photo,
         email,
         title,
-        description
+        description,
+        job
       }
     }))
   },
@@ -42,6 +44,7 @@ export const useProfileStore = create<State & Action>()((set) => ({
         uid: '',
         title: '',
         description: '',
+        job: ''
       },
     }));
   }

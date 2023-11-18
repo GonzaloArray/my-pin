@@ -24,9 +24,10 @@ export const useInfoProfileStore = create<State & Action>()((set) => ({
     email: "",
     title: "",
     description: "",
+    job: "",
   },
   cards: [],
-  getUser: async ({title, description, uid, name, photo, email }) => {
+  getUser: async ({title, description, uid, name, photo, email, job }) => {
     set((state) => ({
       ...state,
       user: {
@@ -35,7 +36,8 @@ export const useInfoProfileStore = create<State & Action>()((set) => ({
         photo,
         email,
         title,
-        description
+        description,
+        job
       },
     }));
   },

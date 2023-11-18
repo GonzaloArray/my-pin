@@ -43,6 +43,19 @@ export const ProfileSetup = () => {
         </SpacingContent>
       </div>
       <div className="flex flex-col gap-3">
+        <Title title="Job Description" />
+        <SpacingContent>
+          <Input
+            value={user.job}
+            register={register}
+            required
+            name="job"
+            placeholder="Ex: Frontend Developer."
+            type="text"
+          />
+        </SpacingContent>
+      </div>
+      <div className="flex flex-col gap-3">
         <Title title="Description" />
         <SpacingContent>
           <div className="border-b border-white-100">

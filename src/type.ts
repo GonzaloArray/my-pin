@@ -55,6 +55,7 @@ export interface User{
 export interface UserDetails extends User {
   title: string;
   description: string;
+  job: string;
 }
 
 // Resume

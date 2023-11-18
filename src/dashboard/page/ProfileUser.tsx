@@ -7,6 +7,7 @@ export type Inputs = {
   name: string;
   title: string;
   description: string;
+  job: string;
 };
 
 
