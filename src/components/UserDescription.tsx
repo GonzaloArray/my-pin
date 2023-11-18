@@ -1,10 +1,10 @@
 import { Arrow } from "../common/icons/Arrow.icon";
 import { Avatar } from "./Avatar";
 import { LinkNetworking } from "./LinkNetworking";
-import { PopStatusUser } from "./PopStatusUser";
+// import { PopStatusUser } from "./PopStatusUser";
 import { SetupUser } from "./SetupUser";
 import Style from "./UserDescription.module.css";
-import Status from "../assets/status.png"
+// import Status from "../assets/status.png"
 import { BannerUser } from "./BannerUser";
 import { useInfoProfileStore } from "../store/infoProfileStore";
 import { useParams } from "react-router-dom";
@@ -61,8 +61,8 @@ export const UserDescription = ({
       <div className="flex flex-col gap-3">
         <div>
           <BannerUser banner={banners.bannerURL} />
-          <img src={Status} className="w-[70px] absolute left-[6rem] top-0" alt="Status User" />
-          <PopStatusUser />
+          {/* <img src={Status} className="w-[70px] absolute left-[6rem] top-0" alt="Status User" />
+          <PopStatusUser /> */}
           <Avatar banner={banners.profileURL} />
         </div>
         <h1 className="font-bold line-clamp-1">{user.title}</h1>
