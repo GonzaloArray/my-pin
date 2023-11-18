@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Pixel from "../../../assets/pixel_banner.webp";
-import Profile from "../../../assets/profile.jpeg";
+import Profile from "../../../assets/Melty.png";
 import { useForm } from "react-hook-form";
 import { SpacingContent } from "../../../components/SpacingContent";
 import { Title } from "../../../components/Title";
