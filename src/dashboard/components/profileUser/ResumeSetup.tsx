@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Resume } from "../../../type";
 import { toast } from "sonner";
 import Skeleton from "react-loading-skeleton";
+import { BtnSubmit } from "../btn/BtnSubmit";
 
 export type Inputs = {
   resumeSpanish: string;
@@ -149,13 +150,7 @@ export const ResumeSetup = () => {
               />
             </label>
           </div>
-          <button
-            type="submit"
-            className={`w-[400px] text-2xl h-[100px] border border-white-100 py-3 px-10 hover:bg-white-100 ${sendLoading ? "bg-white-100 cursor-not-allowed" : ""}`}
-            disabled={sendLoading}
-          >
-            {sendLoading ? 'Loading...' : 'Save Profile'}
-          </button>
+          <BtnSubmit loading={sendLoading}/>
         </form>
       </SpacingContent>
     </>
