@@ -59,7 +59,6 @@ export const updateArrayFirebaseData = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updatedData: Card
 ) => {
-  console.log("entre");
   const userDocRef = doc(db, document, id);
 
   const userDocSnapshot = await getDoc(userDocRef);

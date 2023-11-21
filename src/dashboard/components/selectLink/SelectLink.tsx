@@ -57,7 +57,6 @@ export const SelectLink = () => {
     const findOption = selectedOptionValues.find(select => select.link === option)
 
     if (findOption) return
-    console.log(selectedOptionValues)
 
     setSelectedOptionValues([
       ...selectedOptionValues,

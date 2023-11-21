@@ -10,15 +10,18 @@ import {
 import { useEffect, useState } from "react";
 import { Resume } from "../../../type";
 import { toast } from "sonner";
+import Skeleton from "react-loading-skeleton";
+import { BtnSubmit } from "../btn/BtnSubmit";
 
 export type Inputs = {
   resumeSpanish: string;
   resumeEnglish: string;
 };
 
-
 export const ResumeSetup = () => {
   const user = useProfileStore((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const [sendLoading, setSendLoading] = useState(false);
   const [resumes, setResumes] = useState<Resume>({
     english: "",
     spanish: "",
@@ -26,9 +29,15 @@ export const ResumeSetup = () => {
 
   useEffect(() => {
     const getDataResume = async () => {
-      const data = await getFirebaseData(user.uid, "resume");
-
-      setResumes(data);
+      setLoading(true);
+      try {
+        const data = await getFirebaseData(user.uid, "resume");
+        setResumes(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
     return () => {
       getDataResume();
@@ -37,6 +46,7 @@ export const ResumeSetup = () => {
 
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setSendLoading(true)
     const { resumeSpanish, resumeEnglish } = data;
 
     const storage = getStorage();
@@ -45,13 +55,19 @@ export const ResumeSetup = () => {
       file: File | null,
       language: string
     ) => {
-      if (file && file instanceof File) {
-        const storageRef = ref(storage, `resumes/${user.uid}/${language}.pdf`);
-        await uploadBytes(storageRef, file);
-        const downloadURL = await getDownloadURL(storageRef);
-        return downloadURL;
+      try {
+        if (file && file instanceof File) {
+          const storageRef = ref(storage, `resumes/${user.uid}/${language}.pdf`);
+          await uploadBytes(storageRef, file);
+          const downloadURL = await getDownloadURL(storageRef);
+          return downloadURL;
+        }
+        return null;
+      } catch (error) {
+        console.log(error);
+      } finally{
+        setSendLoading(false)
       }
-      return null;
     };
 
     const spanishResumeURL = await uploadFileToFirebase(
@@ -68,7 +84,7 @@ export const ResumeSetup = () => {
       english: englishResumeURL,
     });
 
-    toast.success('Saved Successfully')
+    toast.success("Saved Successfully");
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -86,7 +102,17 @@ export const ResumeSetup = () => {
         >
           <div className="flex flex-wrap gap-5">
             <div className="flex flex-col gap-3">
-              <a target="_blank" href={resumes.spanish} className="text-2xl bg-gray-500 p-2 rounded-lg text-center hover:bg-gray-400 transition-colors">Resume Spanish</a>
+              {loading ? (
+                <Skeleton className="p-3" />
+              ) : (
+                <a
+                  target="_blank"
+                  href={resumes.spanish}
+                  className="text-2xl bg-gray-500 p-2 rounded-lg text-center hover:bg-gray-400 transition-colors"
+                >
+                  Resume Spanish
+                </a>
+              )}
               <input
                 {...register("resumeSpanish", {
                   required: true,
@@ -101,7 +127,17 @@ export const ResumeSetup = () => {
             </div>
 
             <label className="flex flex-col gap-3">
-              <a target="_blank" href={resumes.english} className="text-2xl bg-gray-500 p-2 rounded-lg text-center hover:bg-gray-400 transition-colors">Resume English</a>
+              {loading ? (
+                <Skeleton className="p-3" />
+              ) : (
+                <a
+                  target="_blank"
+                  href={resumes.english}
+                  className="text-2xl bg-gray-500 p-2 rounded-lg text-center hover:bg-gray-400 transition-colors"
+                >
+                  Resume English
+                </a>
+              )}
               <input
                 {...register("resumeEnglish", {
                   required: true,
@@ -114,12 +150,7 @@ export const ResumeSetup = () => {
               />
             </label>
           </div>
-          <button
-            type="submit"
-            className="w-[400px] text-2xl h-[100px] border border-white-100 py-3 px-10 hover:bg-white-100"
-          >
-            Save Profile
-          </button>
+          <BtnSubmit loading={sendLoading}/>
         </form>
       </SpacingContent>
     </>

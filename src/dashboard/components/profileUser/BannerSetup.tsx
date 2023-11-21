@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Pixel from "../../../assets/pixel_banner.webp";
-import Profile from "../../../assets/profile.jpeg";
+import Profile from "../../../assets/Melty.png";
 import { useForm } from "react-hook-form";
 import { SpacingContent } from "../../../components/SpacingContent";
 import { Title } from "../../../components/Title";
 import { useProfileStore } from "../../../store/authProfileStore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirebaseData, sendFirebaseData } from "../../../service/firebaseAction";
+import {
+  getFirebaseData,
+  sendFirebaseData,
+} from "../../../service/firebaseAction";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
+import { useLoading } from "../../hook/useLoading";
+import Skeleton from "react-loading-skeleton";
 
 interface FormData {
   selectBanner: FileList;
@@ -16,29 +21,46 @@ interface FormData {
 }
 
 export const BannerSetup: React.FC = () => {
-  const {id} = useParams()
+  const { id } = useParams();
   const { register, handleSubmit } = useForm<FormData>();
   const [bannerImage, setBannerImage] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const user = useProfileStore((state) => state.user);
 
+  const {
+    loading,
+    sendLoading,
+    onLoading,
+    onFinallyLoading,
+    submitEventFinallyLoading,
+    submitEventLoading,
+  } = useLoading();
 
   useEffect(() => {
     const getDataBanners = async () => {
-      if (!id) return
-      const data = await getFirebaseData(id, 'profileBanner')
-      setProfileImage(data.profileURL)
-      setBannerImage(data.bannerURL)
-    }
+      try {
+        onLoading();
+        if (!id) return;
+        const data = await getFirebaseData(id, "profileBanner");
+        setProfileImage(data.profileURL);
+        setBannerImage(data.bannerURL);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        onFinallyLoading();
+      }
+    };
     return () => {
-      getDataBanners()
-    }
-  }, [id])
+      getDataBanners();
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const onSubmit = async (data: FormData) => {
     const storage = getStorage();
 
     try {
+      submitEventLoading()
       let bannerDownloadURL;
       let profileDownloadURL;
 
@@ -60,15 +82,17 @@ export const BannerSetup: React.FC = () => {
       }
 
       if (bannerDownloadURL || profileDownloadURL) {
-        if(!id) return
-        sendFirebaseData(id, 'profileBanner',{
+        if (!id) return;
+        sendFirebaseData(id, "profileBanner", {
           bannerURL: bannerDownloadURL || null,
           profileURL: profileDownloadURL || null,
-        })
-        toast.success('Saved Successfully')
+        });
+        toast.success("Saved Successfully");
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      submitEventFinallyLoading()
     }
   };
 
@@ -95,11 +119,15 @@ export const BannerSetup: React.FC = () => {
         <div className="flex justify-start gap-20 items-center">
           <div className="flex flex-col gap-5">
             <div className="relative">
-              <img
-                className="w-[600px] h-[200px] object-bottom object-cover"
-                src={bannerImage ? bannerImage : Pixel}
-                alt="Banner Image Contain"
-              />
+              {loading ? (
+                <Skeleton className="w-[600px] h-[200px]" />
+              ) : (
+                <img
+                  className="w-[600px] h-[200px] object-bottom object-cover"
+                  src={bannerImage ? bannerImage : Pixel}
+                  alt="Banner Image Contain"
+                />
+              )}
               <input
                 type="file"
                 {...register("selectBanner")}
@@ -124,6 +152,7 @@ export const BannerSetup: React.FC = () => {
         </div>
         <button
           type="submit"
+          disabled={sendLoading}
           className="w-[400px] text-2xl h-[100px] border border-white-100 py-3 px-10 hover:bg-white-100 mt-5"
         >
           Save Profile
