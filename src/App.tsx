@@ -40,14 +40,14 @@ function App() {
           <Route path="setup" element={<Setup />} />
           <Route path='*' element={<Navigate to={`/`} />} />
         </Route>
-        <Route path="" element={<PrivateRoute />}>
+        <PrivateRoute>
           <Route path="dashboard/:id" element={<LayoutSelfManagement />}>
             <Route index element={<ProfileUser />} />
             <Route path="proyect" element={<ProyectUser />} />
             <Route path="skills" element={<SkillsUser />} />
           </Route>
           <Route path='*' element={<Navigate to='/auth' />} />
-        </Route>
+        </PrivateRoute>
         <Route path="auth" element={<LayoutAuth />}>
           <Route index element={<Login />} />
           <Route path="register" element={<Register />} />
