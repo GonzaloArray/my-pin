@@ -14,11 +14,9 @@ import { useEffect } from "react"
 import { onAuthenticatedAutomatic } from "./service/firebaseAuth"
 import { useProfileStore } from "./store/authProfileStore"
 import { PrivateRoute } from "./router/PrivateRoute"
-import { useInfoProfileStore } from "./store/infoProfileStore"
 
 function App() {
   const getUser = useProfileStore(state => state.getUser)
-  const user = useInfoProfileStore(state => state.user)
 
   useEffect(() => {
     const getTokenAuthenticated = async () => {
@@ -38,7 +36,7 @@ function App() {
       <Route path="/:id" element={<LayoutDashboard />} >
         <Route index element={<Proyects />} />
         <Route path="setup" element={<Setup />} />
-        <Route path='*' element={<Navigate to={`/${user.uid}`} />} />
+        <Route path='*' element={<Navigate to={`/`} />} />
       </Route>
       <Route path="" element={<PrivateRoute />}>
         <Route path="dashboard/:id" element={<LayoutSelfManagement />}>

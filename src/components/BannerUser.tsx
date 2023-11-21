@@ -10,7 +10,7 @@ export const BannerUser = ({banner}: Props) => {
       <img
         src={banner ?? Banner}
         alt="Banner User"
-        className="absolute border-b-2 border-blue-950 top-0 left-0 right-0 z-0"
+        className="absolute border-b-2 border-blue-950 top-0 left-0 right-0 z-0 h-[200px] w-full object-bottom object-cover"
       />
     </div>
   );
