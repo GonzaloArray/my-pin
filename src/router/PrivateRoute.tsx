@@ -2,15 +2,15 @@ import { Outlet, Navigate } from 'react-router-dom'
 import { useProfileStore } from '../store/authProfileStore'
 
 export const PrivateRoute = () => {
-  const user = useProfileStore((state) => state.user)
+  const status = useProfileStore((state) => state.status)
 
-  // if (user === 'checking') {
-  //   return <h2>cargando</h2>
-  // }
+  if (status === 'checking') {
+    return <h2>cargando</h2>
+  }
 
-  if (user.name === '') {
+  if (status === 'not-authenticated') {
     return <Navigate to='/auth' />
   }
 
-  return user.name.length && <Outlet />
+  return status === 'authenticated' && <Outlet />
 }

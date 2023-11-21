@@ -26,7 +26,7 @@ export const useProfileStore = create<State & Action>()((set) => ({
     job: "",
   },
   loading: false,
-  status: "not-authenticated",
+  status: "",
   error: false,
   errorMessage: "",
   checkingCredentials: () => {
