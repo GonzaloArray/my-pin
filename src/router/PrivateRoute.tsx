@@ -1,7 +1,8 @@
-import { Outlet, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useProfileStore } from '../store/authProfileStore'
+import { ReactNode } from 'react'
 
-export const PrivateRoute = () => {
+export const PrivateRoute = ({children}: {children: ReactNode}) => {
   const status = useProfileStore((state) => state.status)
 
   if (status === 'checking') {
@@ -12,5 +13,5 @@ export const PrivateRoute = () => {
     return <Navigate to='/auth' />
   }
 
-  return status === 'authenticated' && <Outlet />
+  return status === 'authenticated' && <>{children}</>
 }
