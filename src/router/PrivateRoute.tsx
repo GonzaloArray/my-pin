@@ -13,5 +13,5 @@ export const PrivateRoute = ({children}: {children: ReactNode}) => {
     return <Navigate to='/auth' />
   }
 
-  return status === 'authenticated' && <>{children}</>
+  return <>{children}</>
 }
