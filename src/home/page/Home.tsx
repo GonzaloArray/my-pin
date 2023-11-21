@@ -15,6 +15,14 @@ export const Home = () => {
           Go to Resume
         </Link>
       )}
+      {user.name === "" && (
+        <Link
+          className="bg-gray-500 px-10 py-4 rounded-xl hover:bg-gray-400 text-lg"
+          to={`/auth`}
+        >
+          Login User
+        </Link>
+      )}
     </div>
   );
 };
