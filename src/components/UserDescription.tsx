@@ -10,6 +10,8 @@ import { useInfoProfileStore } from "../store/infoProfileStore";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getFirebaseData } from "../service/firebaseAction";
+import { SkeletonLoading } from "./SkeletonLoading";
+import { Toaster, toast } from "sonner";
 
 interface Props {
   toggle: boolean;
@@ -30,45 +32,63 @@ export const UserDescription = ({
   setToggle,
   setModalFormData,
 }: Props) => {
-
   const [banners, setBanners] = useState<Banner>({
-    profileURL: '',
-    bannerURL: ''
-  })
-  const user = useInfoProfileStore(state => state.user)
+    profileURL: "",
+    bannerURL: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const user = useInfoProfileStore((state) => state.user);
 
-  const { id } = useParams()
+  const { id } = useParams();
   useEffect(() => {
     const getBannerUser = async () => {
-      if (!id) return
-      const data = await getFirebaseData(id, 'profileBanner')
-      setBanners(data)
-    }
+      try {
+        setLoading(true);
+        if (!id) return;
+        const data = await getFirebaseData(id, "profileBanner");
+        setBanners(data);
+      } catch (error) {
+        console.log(error);
+        toast.error('Error user.')
+      } finally {
+        setLoading(false);
+      }
+    };
     return () => {
-      getBannerUser()
-    }
-  }, [id])
+      getBannerUser();
+    };
+  }, [id]);
 
   return (
     <>
+      <Toaster style={{backgroundColor: "red"}}/>
       <button
         onClick={() => setToggle()}
-        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
-          }`}
+        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
+          toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
+        }`}
       >
         <Arrow className={Style.icon} />
       </button>
       <div className="flex flex-col gap-3">
         <div>
-          <BannerUser banner={banners.bannerURL} />
+          <SkeletonLoading className="h-[150px]" count={1} loading={loading}>
+            <BannerUser banner={banners.bannerURL} />
+          </SkeletonLoading>
           {/* <img src={Status} className="w-[70px] absolute left-[6rem] top-0" alt="Status User" />
           <PopStatusUser /> */}
-          <Avatar banner={banners.profileURL} />
+          <SkeletonLoading className="h-[150px]" count={1} loading={loading}>
+            <Avatar banner={banners.profileURL} />
+          </SkeletonLoading>
         </div>
-        <h1 className="font-bold line-clamp-1">{user.title}</h1>
-        <p className="tracking-wide leading-7">
-          {user.description}
-        </p>
+        <SkeletonLoading className="p-2" count={1} loading={loading}>
+          <h1 className="font-bold line-clamp-1">{user.title}</h1>
+        </SkeletonLoading>
+
+        <SkeletonLoading className="p-2" count={1} loading={loading}>
+          <p className="tracking-wide leading-7">{user.description}</p>
+        </SkeletonLoading>
+
         <div className="flex gap-2">
           <button
             onClick={() => setModalCv()}
@@ -86,7 +106,9 @@ export const UserDescription = ({
       </div>
 
       <LinkNetworking toggle={toggle} />
-      <SetupUser toggle={toggle} />
+      <SkeletonLoading count={4} loading={loading}>
+        <SetupUser toggle={toggle} />
+      </SkeletonLoading>
     </>
   );
 };
