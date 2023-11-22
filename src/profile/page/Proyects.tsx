@@ -19,7 +19,6 @@ import { AlertInformation } from "../../common/components/Alert";
 import Skeleton from "react-loading-skeleton";
 
 export const Proyects = () => {
-  const { id } = useParams();
   const [cards, setCards] = useState<CardDetails[]>([]);
   const [loading, setLoading] = useState(false);
   const [skills, setSkills] = useState([]);
@@ -28,6 +27,7 @@ export const Proyects = () => {
     const storedStatus = localStorage.getItem("status");
     return storedStatus ? parseInt(storedStatus, 10) : 1;
   });
+  const { id } = useParams();
 
   const [removeGuide, setRemoveGuide] = useState(() => {
     const storedRemoveGuide = localStorage.getItem("removeGuide");
