@@ -26,9 +26,7 @@ function App() {
         getUser(data.userFirebase);
       }
     };
-    return () => {
-      getTokenAuthenticated();
-    };
+    getTokenAuthenticated();
   }, [getUser]);
 
   return (
@@ -40,7 +38,7 @@ function App() {
           <Route path="setup" element={<Setup />} />
           <Route path="*" element={<Navigate to={`/`} />} />
         </Route>
-        <Route path="" element={<PrivateRoute/>}>
+        <Route path="" element={<PrivateRoute />}>
           <Route path="dashboard/:id" element={<LayoutSelfManagement />}>
             <Route index element={<ProfileUser />} />
             <Route path="proyect" element={<ProyectUser />} />

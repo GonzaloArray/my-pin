@@ -27,7 +27,7 @@ export const SelectLink = () => {
   );
 
   useEffect(() => {
-    const getLinkUser = async() => {
+    const getLinkUser = async () => {
       if (!id) return
       const data = await getFirebaseData(id, 'linksUser')
       const options = Object.entries(data).map(option => {
@@ -40,15 +40,13 @@ export const SelectLink = () => {
       setSelectedOptionValues(options)
     }
 
-    return () => {
-      getLinkUser()
-    }
+    getLinkUser()
   }, [id])
 
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (id) {
-      sendFirebaseData(id,'linksUser',data)
+      sendFirebaseData(id, 'linksUser', data)
     }
   };
 

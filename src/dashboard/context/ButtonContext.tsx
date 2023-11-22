@@ -16,7 +16,7 @@ export interface ButtonContextProps {
   selectedCard: Card;
   activeEditProyect: boolean;
   handleAddNewProyect: (id: string, title: string, description: string, url: string) => void;
-  handleUpdateProyect: (idUser:string, title: string, description: string, url: string) => void;
+  handleUpdateProyect: (idUser: string, title: string, description: string, url: string) => void;
   handleButtonClick: (newState: keyof ButtonStates) => void;
   handleNotActiveEditCard: () => void;
   handleSelectStackIconCard: (stack: StackItem) => void;
@@ -44,7 +44,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const [activeSectionSkill, setActiveSectionSkill] = useState(false);
   const [activeEditProyect, setActiveEditProyect] = useState(true);
   const [cards, setCards] = useState<Card[]>([]);
-  const {id} = useParams()
+  const { id } = useParams()
 
   const [selectedCard, setSelectedCard] = useState<Card>({
     title: "Title Example Melty",
@@ -57,14 +57,12 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   });
 
   useEffect(() => {
-    const getCardFirebase = async() => {
+    const getCardFirebase = async () => {
       if (!id) return
       const data = await getFirebaseData(id, 'proyects')
       setCards(data.cards)
     }
-    return () => {
-      getCardFirebase()
-    }
+    getCardFirebase()
   }, [id])
 
   const handleSelectStackIconCard = (stack: StackItem) => {
@@ -82,7 +80,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   ) => {
     const id = crypto.randomUUID()
     sendArrayFirebaseData(idUser, "proyects", {
-      cards: arrayUnion( {
+      cards: arrayUnion({
         ...selectedCard,
         title: title,
         description: description,
@@ -117,7 +115,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
     handleNotActiveEditCard();
   };
 
-  const handleUpdateProyect = async(
+  const handleUpdateProyect = async (
     idUser: string,
     title: string,
     description: string,
@@ -165,7 +163,7 @@ export const ButtonProvider: React.FC<{ children: ReactNode }> = ({
   const handleDeleteProyect = () => {
     const filterProyect = cards.filter((card) => card.id !== selectedCard.id);
     if (!id) return
-    sendFirebaseData(id, 'proyects', {cards: filterProyect})
+    sendFirebaseData(id, 'proyects', { cards: filterProyect })
     setCards(filterProyect);
 
     setSelectedCard({

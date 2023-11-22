@@ -39,9 +39,7 @@ export const ResumeSetup = () => {
         setLoading(false);
       }
     };
-    return () => {
-      getDataResume();
-    };
+    getDataResume();
   }, [user.uid]);
 
   const { register, handleSubmit } = useForm<Inputs>();
@@ -65,7 +63,7 @@ export const ResumeSetup = () => {
         return null;
       } catch (error) {
         console.log(error);
-      } finally{
+      } finally {
         setSendLoading(false)
       }
     };
@@ -150,7 +148,7 @@ export const ResumeSetup = () => {
               />
             </label>
           </div>
-          <BtnSubmit loading={sendLoading}/>
+          <BtnSubmit loading={sendLoading} />
         </form>
       </SpacingContent>
     </>

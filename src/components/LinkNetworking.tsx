@@ -23,9 +23,7 @@ export const LinkNetworking = ({ toggle }: Props) => {
       const data = await getFirebaseData(id, 'linksUser')
       setLinks(data)
     }
-    return () => {
-      getDataLink()
-    }
+    getDataLink()
   }, [id])
 
   return (

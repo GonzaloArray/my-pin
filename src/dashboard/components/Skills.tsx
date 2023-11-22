@@ -23,21 +23,19 @@ export const Skills = ({ children, name }: Props) => {
   const { id } = useParams()
 
   useEffect(() => {
-    const getDataSkills = async() => {
-      if(!id)return
+    const getDataSkills = async () => {
+      if (!id) return
       const data = await getFirebaseData(id, name)
       setSkills(data.skill)
     }
 
-    return () => {
-      getDataSkills()
-    }
+    getDataSkills()
   }, [id, name])
 
   const handleDelete = ({ id: idSkill }: Skill) => {
     const removeSkills = skills.filter((skill) => skill.id !== idSkill);
-    if(!id) return
-    sendFirebaseData(id, name, {skill: removeSkills})
+    if (!id) return
+    sendFirebaseData(id, name, { skill: removeSkills })
     setSkills(removeSkills);
   };
 
