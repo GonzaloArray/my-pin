@@ -54,19 +54,16 @@ export const UserDescription = ({
         setLoading(false);
       }
     };
-    return () => {
-      getBannerUser();
-    };
+    getBannerUser();
   }, [id]);
 
   return (
     <>
-      <Toaster style={{backgroundColor: "red"}}/>
+      <Toaster style={{ backgroundColor: "red" }} />
       <button
         onClick={() => setToggle()}
-        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${
-          toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
-        }`}
+        className={`absolute z-10 top-8 bg-black border-l-2 border-t-2 border-b-2 border-lime-50 py-3 rounded-l-xl transition-all ${toggle ? "end-0 hover:px-5 -mr-3" : "rotate-180 px-2 -end-7"
+          }`}
       >
         <Arrow className={Style.icon} />
       </button>
