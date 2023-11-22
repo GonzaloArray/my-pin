@@ -38,6 +38,7 @@ export const Proyects = () => {
     const getDataCardsFirebase = async () => {
       if (!id) return;
       const data = await getFirebaseData(id, "proyects");
+      console.log(data)
       setCards(data.cards);
     };
     return () => {
@@ -49,6 +50,7 @@ export const Proyects = () => {
     const getDataSkillsFirebase = async () => {
       if (!id) return;
       const data = await getFirebaseData(id, "skills");
+      console.log(data);
       setSkills(data.skill);
     };
     return () => {

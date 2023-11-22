@@ -35,6 +35,7 @@ export const LayoutDashboard = () => {
     const getDataResume = async () => {
       if(!id) return
       const data = await getFirebaseData(id, "resume");
+      console.log(data)
       setResumes(data);
     };
     return () => {
@@ -47,6 +48,7 @@ export const LayoutDashboard = () => {
       try {
         if (id) {
           const data = await getFirebaseData(id, "users");
+          console.log(data);
           if (data) {
             getUser(data);
           }
