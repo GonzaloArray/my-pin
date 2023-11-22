@@ -48,11 +48,11 @@ export const Card = ({ title, description, link, icon }: Props) => {
       <div className="absolute z-0 h-full w-full [mask-image:linear-gradient(black_10%,transparent)]">
         <BgCard />
       </div>
-      <div className="absolute z-10 overflow-y opacity-25 -right-8 -bottom-10 h-full flex items-end">
+      <div className="absolute z-10 overflow-y opacity-25 -right-[100px] -bottom-[100px] h-full flex items-end">
         <JSFigure>
           {icon && React.cloneElement(IconElement, {
-            width: "190",
-            height: "190",
+            width: "120",
+            height: "120",
           })}
         </JSFigure>
       </div>

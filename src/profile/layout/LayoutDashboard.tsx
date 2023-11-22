@@ -54,7 +54,7 @@ export const LayoutDashboard = () => {
   return (
     <div className="relative">
       <div
-        className={`h-screen fixed z-50 w-[98%] md:w-[410px] flex justify-between gap-5  items-center flex-col bg-slate-900 p-7 border-spacing-2 border-r-2 border-lime-50 ${toggle ? "" : "-left-[400px]"
+        className={`h-screen fixed z-50 w-[98%] md:w-[350px] xl:w-[450px] flex justify-between gap-5  items-center flex-col bg-slate-900 p-7 border-spacing-2 border-r-2 border-lime-50 ${toggle ? "" : "-left-[400px] xl:-left-[434px]"
           }`}
       >
         <UserDescription
@@ -66,7 +66,7 @@ export const LayoutDashboard = () => {
         />
       </div>
       <div
-        className={`absolute right-0 flex flex-col z-0 ${toggle ? "hidden sm:block sm:left-[410px]" : "left-5"
+        className={`absolute right-0 flex flex-col z-0 ${toggle ? "hidden sm:block sm:left-[350px] xl:left-[450px]" : "left-5"
           }`}
       >
         <Outlet />
