@@ -50,10 +50,8 @@ export const BannerSetup: React.FC = () => {
         onFinallyLoading();
       }
     };
-    return () => {
-      getDataBanners();
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    getDataBanners();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const onSubmit = async (data: FormData) => {
@@ -91,7 +89,7 @@ export const BannerSetup: React.FC = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       submitEventFinallyLoading()
     }
   };
