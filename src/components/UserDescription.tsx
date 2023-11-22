@@ -79,7 +79,7 @@ export const UserDescription = ({
           </SkeletonLoading>
         </div>
         <SkeletonLoading className="p-2" count={1} loading={loading}>
-          <h1 className="font-bold line-clamp-1">{user.title}</h1>
+          <h1 className="font-bold line-clamp-2">{user.title}</h1>
         </SkeletonLoading>
 
         <SkeletonLoading className="p-2" count={1} loading={loading}>
