@@ -32,36 +32,24 @@ export const LayoutDashboard = () => {
   const {getUser} = useInfoProfileStore( state => state)
 
   useEffect(() => {
-    const getDataResume = async () => {
-      if(!id) return
-      const data = await getFirebaseData(id, "resume");
-      console.log(data)
-      setResumes(data);
-    };
-    return () => {
-      getDataResume();
-    };
-  }, [id]);
+    const getDataFromFirebase = async () => {
+      if (!id) return;
 
-  useEffect(() => {
-    const fetchData = async () => {
       try {
-        if (id) {
-          const data = await getFirebaseData(id, "users");
-          console.log(data);
-          if (data) {
-            getUser(data);
-          }
-        }
+        const resume = await getFirebaseData(id, "resume");
+        setResumes(resume);
+
+        const user = await getFirebaseData(id, "users");
+        getUser(user);
+
+
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    return () => {
-      fetchData()
-    }
-  }, [id, getUser])
+    getDataFromFirebase();
+  }, [id, getUser]);
 
   return (
     <div className="relative">
