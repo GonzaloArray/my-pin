@@ -35,46 +35,29 @@ export const Proyects = () => {
   });
 
   useEffect(() => {
-    const getDataCardsFirebase = async () => {
+    const getDataFromFirebase = async () => {
       if (!id) return;
-      const data = await getFirebaseData(id, "proyects");
-      console.log(data)
-      setCards(data.cards);
-    };
-    return () => {
-      getDataCardsFirebase();
-    };
-  }, [id]);
 
-  useEffect(() => {
-    const getDataSkillsFirebase = async () => {
-      if (!id) return;
-      const data = await getFirebaseData(id, "skills");
-      console.log(data);
-      setSkills(data.skill);
-    };
-    return () => {
-      getDataSkillsFirebase();
-    };
-  }, [id]);
-
-  useEffect(() => {
-    const getDataSkillsLearningFirebase = async () => {
       try {
         setLoading(true);
-        if (!id) return;
-        const data = await getFirebaseData(id, "learning");
-        setLearning(data.skill);
+
+        const cardsData = await getFirebaseData(id, "proyects");
+        setCards(cardsData.cards);
+
+        const skillsData = await getFirebaseData(id, "skills");
+        setSkills(skillsData.skill);
+
+        const learning = await getFirebaseData(id, "learning");
+        setLearning(learning.skill);
+
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    return () => {
-      getDataSkillsLearningFirebase();
-    };
+    getDataFromFirebase();
   }, [id]);
 
   const handleNextGuides = () => {
