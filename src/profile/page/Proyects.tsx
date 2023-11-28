@@ -17,6 +17,7 @@ import { Card as CardDetails } from "../../type";
 import { useParams } from "react-router-dom";
 import { AlertInformation } from "../../common/components/Alert";
 import Skeleton from "react-loading-skeleton";
+import { BannerExperience } from "../components/BannerExperience";
 
 export const Proyects = () => {
   const [cards, setCards] = useState<CardDetails[]>([]);
@@ -99,7 +100,8 @@ export const Proyects = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 p-4 lg:p-10">
+    <div className="flex flex-col gap-10 p-4 lg:px-10">
+      <BannerExperience/>
       <div className="flex justify-between">
         <Title title="Projects." />
         <div className="flex gap-1">
